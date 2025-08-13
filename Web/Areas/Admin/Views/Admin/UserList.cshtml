@@ -1,0 +1,116 @@
+﻿@model Web.Areas.Admin.HomeModel
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var Type = TempData["AlertType"] ?? string.Empty;
+    var Message = TempData["AlertMessage"] ?? string.Empty;
+    int i = 0;
+}
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">User List</div>
+    <div class="ps-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Dashboard","Home")"><i class="bx bx-home-alt"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">View User List</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="page-wrapper">
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="mb-0">View User List</h4>
+                    </div>
+                    <hr />
+                    <div class="table-responsive">
+                        <table id="example2" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Token Id</th>
+                                    <th class="text-center">Password</th>
+                                    <th class="text-center">Full Name</th>
+                                    <th class="text-center">Sponsor Id</th>
+                                    <th class="text-center">Sponsor Name</th>
+                                    <th class="text-center">Parent Id</th>
+                                    <th class="text-center">Parent Name</th>
+                                    <th class="text-center">Position</th>
+                                    <th class="text-center">IsKyc</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.List_Registration_Businesses_Obj != null && Model.List_Registration_Businesses_Obj.Count > 0)
+                                {
+                                    foreach (var items in Model.List_Registration_Businesses_Obj)
+                                    {
+                                        <tr border="1">
+                                            <td class="text-center">@(++i)</td>
+                                            <td class="text-center">@items.Token_Id</td>
+                                            <td class="text-center">@items.Password</td>
+                                            <td class="text-center">@items.Full_Name</td>
+                                            <td class="text-center">@items.Sponsor_Id</td>
+                                            <td class="text-center">@items.Sponsor_Name</td>
+                                            <td class="text-center">@items.Parent_Id</td>
+                                            <td class="text-center">@items.Parent_Name</td>
+                                            <td class="text-center">@items.Position</td>
+                                            <td class="text-center">@items.Is_KYC_Approved</td>
+                                            <td class="text-center">@items.Status_Name</td>
+                                            <td>
+                                                <ul class="d-flex justify-content-around actions" style="list-style:none">
+                                                    <li class="edit">
+                                                        @if (!items.Is_Locked)
+                                                        {
+                                                            <a href="@Url.Action("UpdateUser","Admin", new { User_Id=@items.FK_User_Id,Is_Locked=true})" class="btn btn-danger">Block<i class='bx bx-street-view'></i> </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="@Url.Action("UpdateUser","Admin", new { User_Id=@items.FK_User_Id,Is_Locked=false})" class="btn btn-info">Un Block<i class='bx bx-street-view'></i> </a>
+                                                        }
+                                                        <a href="@Url.Action("UserProfile","Member", new { Registration_Id=@items.Registration_Id})" class="btn btn-info">Edit<i class='bx bxs-pencil'></i> </a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Token Id</th>
+                                    <th class="text-center">Password</th>
+                                    <th class="text-center">Full Name</th>
+                                    <th class="text-center">Sponsor Id</th>
+                                    <th class="text-center">Sponsor Name</th>
+                                    <th class="text-center">Parent Id</th>
+                                    <th class="text-center">Parent Name</th>
+                                    <th class="text-center">Position</th>
+                                    <th class="text-center">IsKyc</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var Message = '@Message';
+    if (Message != '') {
+        iziToast.success({
+            title: '@Type',
+            message: '@Message',
+        });
+    }
+</script>

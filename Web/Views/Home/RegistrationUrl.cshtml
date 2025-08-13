@@ -1,0 +1,353 @@
+﻿@model Web.Models.HomeModel
+@{
+    ViewBag.Title = "RegistrationUrl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Type = TempData["AlertType"] ?? string.Empty;
+    var Message = TempData["AlertMessage"] ?? string.Empty;
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="title" content="Ujjawal Sanskar : Registration" />
+    <meta name="image" content="~/Areas/Admin/Content/assets/images/favicon-32x32.png" />
+    <meta property="site_name" content="Ujjawal Sanskar : Registration" />
+
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ujjawal Sanskar : Registration">
+    <meta property="og:site_name" content="Ujjawal Sanskar : Registration">
+    <meta property="og:image" content="~/Areas/Admin/Content/assets/images/favicon-32x32.png">
+    <meta property="og:image:secure_url" content="~/Areas/Admin/Content/assets/images/favicon-32x32.png">
+    <meta property="og:image:width" content="176">
+    <meta property="og:image:height" content="52">
+    <meta property="og:image:alt" content="thumnail">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ujjawal Sanskar : Registration">
+    <meta name="twitter:image" content="~/Areas/Admin/Content/assets/images/favicon-32x32.png">
+</head>
+<style>
+    .causes-details-wrapper .details-content .give-form .give-payment-mode-select {
+        padding-top: 65px;
+        border-top: 1px solid #e5e5e5;
+        padding-bottom: 2px;
+    }
+
+    .nice-select .option {
+        border: 1px solid #ffffff;
+    }
+
+    .nice-select .list {
+        background-color: #ffffff;
+    }
+
+    .causes-details-wrapper .details-content .give-form .give-purchase-form-wrap .single-personal-info select {
+        width: 100%;
+        background: #f8f8f8;
+        line-height: 1;
+        padding: 25px 30px;
+        border: 0px;
+        color: var(--text);
+    }
+</style>
+<div class="container py-5">
+    <div class="card shadow-lg">
+        <div class="card-header text-center text-white" style=" background-color: rgb(0 220 200) !important">
+            <h2>Registration Form</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("SaveRegistratinon", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <ul class="nav nav-tabs mb-3" id="registrationTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="sponsor-tab" data-bs-toggle="tab" data-bs-target="#sponsor" type="button" role="tab">Sponsor Details</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab">Personal Details</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab">Admin Payment Details</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab">Payment Info</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password" type="button" role="tab">Password</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="registrationTabsContent">
+                    <!-- Sponsor Details -->
+                    <div class="tab-pane fade show active" id="sponsor" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-md-4">@Html.Label("Parent Id") @Html.TextBoxFor(m => m.Registration_Obj.Parent_Id, new { @class = "form-control", @readonly = "readonly", @required = "required" })</div>
+                            <div class="col-md-4">@Html.Label("Parent Name") @Html.TextBoxFor(m => m.Registration_Obj.Parent_Name, new { @class = "form-control", @readonly = "readonly" })</div>
+                            <div class="col-md-4">@Html.Label("Position") @Html.TextBoxFor(m => m.Registration_Obj.Position, new { @class = "form-control", @readonly = "readonly" })</div>
+                            <div class="col-md-6">@Html.Label("Sponsor Id") @Html.TextBoxFor(m => m.Registration_Obj.Sponsor_Id, new { @class = "form-control", @readonly = "readonly" })</div>
+                            <div class="col-md-6">@Html.Label("Sponsor Name") @Html.TextBoxFor(m => m.Registration_Obj.Sponsor_Name, new { @class = "form-control", @readonly = "readonly" })</div>
+
+                            <!-- Add more sponsor fields as needed -->
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-primary" onclick="goToTab('#personal')">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Details -->
+                    <div class="tab-pane fade" id="personal" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-md-4">@Html.Label("Full Name") @Html.TextBoxFor(m => m.Registration_Obj.Full_Name, new { @class = "form-control", @required = "required" })</div>
+                            <div class="col-md-4">@Html.Label("DOB") @Html.TextBoxFor(m => m.Registration_Obj.DOB, new { @class = "form-control", @type = "date" })</div>
+                            <div class="col-md-4">@Html.Label("Mobile No") @Html.TextBoxFor(m => m.Registration_Obj.Mobile, new { @class = "form-control", @required = "required", @maxlength = "10" })</div>
+                            <div class="col-md-4">@Html.Label("Email") @Html.TextBoxFor(m => m.Registration_Obj.Email, new { @class = "form-control", @type = "email" })</div>
+                            <div class="col-md-4">@Html.Label("Aadhaar No") @Html.TextBoxFor(m => m.Registration_Obj.Aadhar_No, new { @class = "form-control", @type = "text", @maxlength = "12", @id = "Aadhar_No" })</div>
+                            <div class="col-md-4">@Html.Label("PAN No") @Html.TextBoxFor(m => m.Registration_Obj.PAN_No, new { @class = "form-control", @id = "PAN_No" })</div>
+                            <div class="col-md-4">
+                                @Html.Label("Gender")
+                                @Html.DropDownListFor(m => m.Registration_Obj.Gender, new List<SelectListItem> {
+                                                new SelectListItem { Text = "Male", Value = "Male" },
+                                                new SelectListItem { Text = "Female", Value = "Female" },
+                                                new SelectListItem { Text = "Other", Value = "Other" }
+                                                }, "-- Select --", new { @class = "form-control w-100" })
+                            </div>
+                            <div class="col-md-4">@Html.Label("Image") @Html.TextBoxFor(m => m.ImageFile, new { @class = "form-control", @type = "file" })</div>
+                            <div class="col-md-4">@Html.Label("Address") @Html.TextBoxFor(m => m.Registration_Obj.Address, new { @class = "form-control" })</div>
+
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="goToTab('#sponsor')">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="goToTab('#admin')">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Payment Details -->
+                    <div class="tab-pane fade" id="admin" role="tabpanel">
+                        <div class="row g-4 mt-2">
+                            <div class="row ">
+                                <div class="col-md-9 row ">
+                                    <div class="col-md-6">@Html.Label("Account Holder Name") @Html.TextBoxFor(m => m.Registration_Business_Obj.Account_Holder_Name, new { @class = "form-control", @readonly = "readonly" })</div>
+                                    <div class="col-md-6">@Html.Label("Account No") @Html.TextBoxFor(m => m.Registration_Business_Obj.Account_No, new { @class = "form-control", @readonly = "readonly" })</div>
+                                    <div class="col-md-6">@Html.Label("Bank Name") @Html.TextBoxFor(m => m.Registration_Business_Obj.Bank_Name, new { @class = "form-control", @readonly = "readonly" })</div>
+                                    <div class="col-md-6">@Html.Label("IFSC Code") @Html.TextBoxFor(m => m.Registration_Business_Obj.IFSC_Code, new { @class = "form-control", @readonly = "readonly" })</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex justify-content-center mt-3">
+                                        @if (!String.IsNullOrEmpty(Model.Registration_Business_Obj.UPI_QR_Code))
+                                        {
+                                            <img src="@Url.Content(Model.Registration_Business_Obj.UPI_QR_Code)" width="120" />
+                                        }
+                                    </div>
+                                    <p class="text-center text-primary fw-bold m-0"><span class="fw-bolder text-danger">UPI Id - </span> @Model.Registration_Business_Obj.UPI_ID</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-0">@Html.Label("Payment Amount") <input type="text" value="1059.32" class="form-control" readonly /></div>
+                            <div class="col-md-4 mt-0">@Html.Label("Tax Amount") <input type="text" value="190.68" class="form-control" readonly /></div>
+                            <div class="col-md-4 mt-0">@Html.Label("Total Payable") <input type="text" value="1250" class="form-control" readonly /></div>
+                            <!-- Add more admin fields -->
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="goToTab('#personal')">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="goToTab('#payment')">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Info -->
+                    <div class="tab-pane fade" id="payment" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-md-4">@Html.Label("Transaction Id") @Html.TextBoxFor(m => m.Registration_Obj.Transation_Id, new { @class = "form-control" })</div>
+                            <div class="col-md-4">@Html.Label("Payment Date") @Html.TextBoxFor(m => m.Registration_Obj.Payment_Date, new { @class = "form-control", @type = "date" })</div>
+                            <div class="col-md-4">@Html.Label("Payment Screenshot") @Html.TextBoxFor(m => m.payment_SS, new { @class = "form-control", @type = "file" })</div>
+                            <!-- Add more payment fields -->
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="goToTab('#admin')">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="goToTab('#password')">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="tab-pane fade" id="password" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <label>Password</label>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @required = "required", @placeholder = "Password" })
+                            </div>
+                            <div class="col-md-4">
+                                <label>Confirm Password</label>
+                                @Html.PasswordFor(m => m.Confirm_Password, new { @class = "form-control", @required = "required", @placeholder = "Confirm Password" })
+                                @Html.HiddenFor(u => u.Registration_Obj.Token_Id)
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="goToTab('#payment')">Previous</button>
+                                <div>
+                                    <button type="submit" class="btn btn-success me-2">Submit</button>
+                                    <button type="button" onclick="CopyReferalLink()" class="btn btn-primary"><i class="far fa-copy"></i> Copy Link</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function CopyReferalLink() {
+        debugger
+        $('#Referal_Link').val(location.href);
+        var copyText = document.getElementById("Referal_Link");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+        navigator.clipboard.writeText(copyText.value);
+        iziToast.success
+            ({
+                title: 'Ok',
+                message: 'Link Has Been Copyed!',
+            });
+    }
+
+    function FillUrl() {
+        if (location.href.split("?").length == 1) {
+            $("#Registration_Obj_Parent_Id").attr("readonly",false);
+            $("#Registration_Obj_Sponsor_Id").attr("readonly", false);
+            return;
+        }
+        debugger
+       $.ajax({
+           url: `@Url.Action("GetDecryptedData", "Home")`,
+           data: { UrlData: location.href.split("?")[1]},
+            type: "POST",
+           success: function (response) {
+               $("#Registration_Obj_Parent_Id").val(response.Parent_Id)
+               $("#Registration_Obj_Parent_Name").val(response.Parent_Name)
+               $("#Registration_Obj_Position").val(response.Position)
+               $("#Registration_Obj_Sponsor_Id").val(response.Sponcer_Id)
+               $("#Registration_Obj_Sponsor_Name").val(response.Sponcer_Name)
+            },
+            error: function (request, status, error) {
+
+              console.log(error)
+            }
+       });
+    }
+
+    function goToTab(tabId) {
+        const tab = document.querySelector(`button[data-bs-target="${tabId}"]`);
+        if (tab) new bootstrap.Tab(tab).show();
+    }
+    FillUrl();
+    var Message = '@Message';
+    if (Message != '') {
+        iziToast.success({
+            title: '@Type',
+            message: '@Message',
+        });
+    }
+</script>
+
+<script>
+    function showError(message) {
+        iziToast.error({ title: 'Error', message: message });
+    }
+
+    $('#Registration_Obj_Mobile').on('blur', function () {
+        const val = $(this).val();
+        if (!/^\d{10}$/.test(val)) {
+            showError('Mobile number must be exactly 10 digits.');
+            $(this).val('');
+        }
+    });
+
+    $('#Registration_Obj_Email').on('blur', function () {
+        const email = $(this).val();
+        if (!/^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(email)) {
+            showError('Invalid email format.');
+            $(this).val('');
+        }
+    });
+
+    $('#Aadhar_No').on('blur', function () {
+        const aadhar = $(this).val();
+        if (!/^\d{12}$/.test(aadhar)) {
+            showError('Aadhaar must be 12 digits.');
+            $(this).val('');
+        }
+    });
+
+    $('#PAN_No').on('blur', function () {
+        const pan = $(this).val().toUpperCase();
+        if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) {
+            showError('Invalid PAN format. Example: ABCDE1234F');
+            $(this).val('');
+        } else {
+            $(this).val(pan);
+        }
+    });
+
+    $('#Confirm_Password').on('blur', function () {
+        const pass = $('#Password').val();
+        const cpass = $(this).val();
+        if (pass !== cpass) {
+            showError('Passwords do not match.');
+            $(this).val('');
+        }
+    });
+
+    $('#Registration_Obj_Parent_Id').on('blur', function () {
+       var Registration_No = document.getElementById("Registration_Obj_Parent_Id").value;
+        $.ajax({
+            url: `@Url.Action("GetName", "Home")`,
+            data: { Token_Id: Registration_No },
+            type: "POST",
+            success: function (response) {
+                debugger
+                if (response != null && response.Full_Name != null) {
+                    $('#Registration_Obj_Parent_Name').val(response.Full_Name);
+                    if (response.Position.length == 0) {
+                        showError('Both Legs are occupied.');
+                    } else {
+                        $('#Registration_Obj_Position').val(response.Position[0]);
+                    }
+                } else {
+                    showError('Wrong Parent Id Number.');
+                }
+            },
+            error: function (request, status, error) {
+
+              console.log(error)
+            }
+        });
+    });
+
+    $('#Registration_Obj_Sponsor_Id').on('blur', function () {
+        var Registration_No = document.getElementById("Registration_Obj_Sponsor_Id").value;
+        $.ajax({
+            url: `@Url.Action("GetName", "Home")`,
+            data: { Token_Id: Registration_No },
+            type: "POST",
+            success: function (response) {
+                debugger
+                if (response != null && response.Full_Name != null) {
+                    document.getElementById("Registration_Obj_Sponsor_Name").value = response.Full_Name;
+                } else {
+                    showError('Wrong Sponsor Id Number.');
+                }
+            },
+            error: function (request, status, error) {
+
+              console.log(error)
+            }
+        });
+    });
+
+    function CopyReferalLink() {
+        const temp = $('<input>');
+        $('body').append(temp);
+        temp.val(window.location.href).select();
+        document.execCommand("copy");
+        temp.remove();
+        iziToast.success({ title: 'Copied', message: 'Referral link copied!' });
+    }
+</script>

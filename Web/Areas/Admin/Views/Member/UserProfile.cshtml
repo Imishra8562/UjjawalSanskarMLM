@@ -1,0 +1,234 @@
+﻿@model Web.Areas.Admin.MemberModel
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var Type = TempData["AlertType"] ?? string.Empty;
+    var Message = TempData["AlertMessage"] ?? string.Empty;
+}
+<div class="page-wrapper">
+    <!--page-content-wrapper-->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">User Profile</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item">
+                                <a href="@Url.Action("Dashboard","Home")"><i class='bx bx-home-alt'></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="user-profile-page">
+                <div class="card radius-15">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-12 col-lg-7 border-right">
+                                <div class="d-md-flex align-items-center">
+                                    <div class="mb-md-0 mb-3">
+                                        @if (Model.Registration_Obj.Img_File != null)
+                                        {
+                                            <img src="@Url.Content(Model.Registration_Obj.Img_File)" class="rounded-circle shadow" width="130" height="130" alt="" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Areas/Admin/Content/assets/images/avatars/avatar-4.png" class="rounded-circle shadow" width="130" height="130" alt="" />
+                                        }
+                                    </div>
+                                    <div class="ms-md-4 flex-grow-1">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <h4 class="mb-0">@Model.Registration_Obj.Full_Name</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end row-->
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#Experience"><span class="p-tab-name">Profile</span><i class='bx bx-donate-blood font-24 d-sm-none'></i></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-3">
+                            <div class="tab-pane fade show active" id="Experience">
+                                <div class="card shadow-none border mb-0 radius-15">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            @using (Html.BeginForm("UpdateProfile", "Member", FormMethod.Post, new { enctype = "multipart/form-data", @class = "row" }))
+                                            {
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Token Id</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.Token_Id, new { @class = "form-control", @type = "text", @autocomplete = "off", @readonly = true, @required = "required" })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Parent Id</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.Parent_Id, new { @class = "form-control", @type = "text", @autocomplete = "off", @readonly = true, @required = "required" })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Parent Name</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.Parent_Name, new { @class = "form-control", @type = "text", @autocomplete = "off", @readonly = true, @required = "required" })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Sponsor Id</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.Sponsor_Id, new { @class = "form-control", @type = "text", @autocomplete = "off", @readonly = true, @required = "required" })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Sponsor Name</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.Sponsor_Name, new { @class = "form-control", @type = "text", @autocomplete = "off", @readonly = true, @required = "required" })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Position</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.Position, new { @class = "form-control", @type = "text", @autocomplete = "off", @readonly = true, @required = "required" })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Full Name</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.Full_Name, new { @class = "form-control", @type = "text", @autocomplete = "off", @required = "required" })
+                                                </div>
+                                                if (Common.CookiesStateManager.Cookies_Logged_User_Role_Id == "1" || Common.CookiesStateManager.Cookies_Logged_User_Role_Id == "2")
+                                                {
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Email Id</label>
+                                                        @Html.TextBoxFor(m => m.Registration_Obj.Email, new { @class = "form-control", @type = "text", @autocomplete = "off" ,  @required = "required" })
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Phone No</label>
+                                                        @Html.TextBoxFor(m => m.Registration_Obj.Mobile, new { @class = "form-control", @type = "text", @autocomplete = "off", @required = "required" })
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Email Id</label>
+                                                        @Html.TextBoxFor(m => m.Registration_Obj.Email, new { @class = "form-control", @type = "text", @autocomplete = "off", @readonly = true, @required = "required" })
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Phone No</label>
+                                                        @Html.TextBoxFor(m => m.Registration_Obj.Mobile, new { @class = "form-control", @type = "text", @autocomplete = "off", @readonly = true, @required = "required" })
+                                                    </div>
+                                                }
+
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Gender</label>
+                                                    @Html.DropDownListFor(m => m.Registration_Obj.Gender, new List<SelectListItem> { new SelectListItem { Text = "Male", Value = "Male" }, new SelectListItem { Text = "Female", Value = "Female" }, new SelectListItem { Text = "Other", Value = "Other" } }, "-- Select --", new { @class = "form-control" })
+                                                </div>
+
+                                                if (Model.Registration_Obj.Is_KYC_Approved)
+                                                {
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">PAN No</label>
+                                                        @Html.TextBoxFor(m => m.Registration_Obj.PAN_No, new { @class = "form-control", @type = "text", @autocomplete = "off", @required = "required", @readonly = true })
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Aadhar No</label>
+                                                        @Html.TextBoxFor(m => m.Registration_Obj.Aadhar_No, new { @class = "form-control", @type = "text", @autocomplete = "off", @required = "required", @readonly = true })
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">PAN No</label>
+                                                        @Html.TextBoxFor(m => m.Registration_Obj.PAN_No, new { @class = "form-control", @type = "text", @autocomplete = "off", @required = "required" })
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Aadhar No</label>
+                                                        @Html.TextBoxFor(m => m.Registration_Obj.Aadhar_No, new { @class = "form-control", @type = "text", @autocomplete = "off", @required = "required" })
+                                                    </div>
+                                                }
+
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Date Of Birth</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @autocomplete = "off", @required = "required" })
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Address</label>
+                                                    @Html.TextBoxFor(m => m.Registration_Obj.Address, new { @class = "form-control", @type = "text", @autocomplete = "off", @required = "required" })
+                                                </div>
+
+                                                <div class="col-12 col-lg-6">
+                                                    <label class="form-label">Picture</label>
+                                                    <div class="card shadow-none border mb-0">
+                                                        <div class="card-body">
+                                                            <div class="d-flex align-items-center">
+                                                                @if (Model.Registration_Obj.Img_File != null)
+                                                                {
+                                                                    <img src="@Url.Content(Model.Registration_Obj.Img_File)" width="50" alt="">
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img src="~/Areas/Admin/Content/assets/images/logo-NoBg-Blue.png" width="50" alt="">
+                                                                }
+                                                                @Html.TextBoxFor(m => m.ImageFile, new { @class = "form-control mx-1", @type = "file", @autocomplete = "off" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                @Html.HiddenFor(m => m.Registration_Obj.Img_File)
+                                                @Html.HiddenFor(m => m.Registration_Obj.FK_User_Id)
+                                                @Html.HiddenFor(m => m.Registration_Obj.FK_Reg_Status_Id)
+                                                @Html.HiddenFor(m => m.Registration_Obj.Registration_Id)
+                                                @Html.HiddenFor(m => m.Registration_Obj.Token_Id)
+                                                @Html.HiddenFor(m => m.Registration_Obj.Password)
+                                                @Html.HiddenFor(m => m.Registration_Obj.Mobile)
+                                                @Html.HiddenFor(m => m.Registration_Obj.Email)
+                                                <div>
+                                                    <button class="btn btn-primary mt-2" type="submit">Update</button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+      var Message = '@Message';
+    if (Message != '') {
+        iziToast.success({
+            title: '@Type',
+            message: '@Message',
+        });
+    }
+</script>
+<script>
+    function GetState(Country_Id) {
+        debugger
+        $.getJSON('/Member/GetState?Country_Id=' + Country_Id, function (data) {
+            var items = '<li value="">-- State Name--</li>';
+            $.each(data, function (i, item) {
+                items += "<li class='option' data-value='" + item.Value + "'>" + item.Text + "</li>";
+            });
+            $("#Registration_Obj_FK_State_Id+div ul").html(items);
+            $.each(data, function (i, item) {
+                items += "<option value='" + item.Value + "'>" + item.Text + "</option>";
+            });
+            $("#Registration_Obj_FK_State_Id").html(items);
+        });
+    }
+
+    function GetCity() {
+        debugger
+        var State_Id = $('#Registration_Obj_FK_State_Id').val();
+        $.getJSON('/Member/GetCity?State_Id=' + State_Id, function (data) {
+            var items = '<li value="">-- City Name--</li>';
+            $.each(data, function (i, item) {
+                items += "<li class='option' data-value='" + item.Value + "'>" + item.Text + "</li>";
+            });
+            $("#Registration_Obj_FK_City_Village_Id+div ul").html(items);
+            $.each(data, function (i, item) {
+                items += "<option value='" + item.Value + "'>" + item.Text + "</option>";
+            });
+            $("#Registration_Obj_FK_City_Village_Id").html(items);
+        });
+    }
+</script>

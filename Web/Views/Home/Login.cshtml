@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+    var Type = TempData["AlertType"] ?? string.Empty;
+    var Message = TempData["AlertMessage"] ?? string.Empty;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujjawal Sanskar</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/Banner/Logo_Ujjwal.png" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        body {
+            background-color: #B0BEC5;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: none;
+        }
+
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .facebook {
+            background-color: #3b5998;
+        }
+
+        .twitter {
+            background-color: #1DA1F2;
+        }
+
+        .linkedin {
+            background-color: #2867B2;
+        }
+
+        .login-container {
+            min-height: 100vh;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .btn-blue {
+            background-color: #08a698;
+            color: white;
+        }
+
+            .btn-blue:hover {
+                background-color: #004085;
+                color: white;
+            }
+
+        .bg-blue {
+            background-color: #08a698;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid login-container d-flex align-items-center justify-content-center">
+        <div class="card p-4 w-100" style="max-width: 900px;">
+            <div class="row">
+                <div class="col-md-6 d-flex flex-column align-items-center justify-content-center image-container">
+                    <a href="@Url.Action("Index","Home")">
+                        <img src="~/Content/assets/img/Banner/Logo_Ujjwal.png" class="logo mb-3" style="width:165px;" />
+                    </a>
+
+                    <img src="https://i.imgur.com/uNGdWHi.png" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <hr class="flex-grow-1 mr-2">
+                        <span style="font-size:20px;">Login</span>
+                        <hr class="flex-grow-1 ml-2">
+                    </div>
+                    @using (Html.BeginForm("Autheticate", "Admin/Security", FormMethod.Post, new { enctype = "multipart/form-data", @class = " g-3" }))
+                    {
+                        <div class="form-group">
+                            <label class="input-label">User Name/Token Id</label>
+                            @Html.TextBox("User_Name", "", new { @class = "form-control mb-0", @type = "text", @placeholder = "User Name", @autocomplete = "off", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <label class="input-label">Password</label>
+                            @Html.TextBox("Password", "", new { @class = "form-control mb-0", @type = "password", @placeholder = "Enter Password", @autocomplete = "off", @required = "required" })
+                        </div>
+                        <div class="form-group d-flex justify-content-between align-items-center">
+
+                            @*<a href="#">Forgot Password?</a>*@
+                        </div>
+                        <button type="submit" class="btn btn-blue btn-block">Login</button>
+                        <p class="text-center mt-3">Don't have an account? <a href="@Url.Action("RegistrationUrl","Home")" class="text-danger">Register</a></p>
+
+                    }
+                </div>
+            </div>
+            <div class="bg-blue text-center py-2 mt-4">
+                <small>&copy; 2025. All rights reserved.</small>
+            </div>
+        </div>
+    </div>
+    <script>
+       var Message = '@Message';
+        if (Message != '') {
+           iziToast.success({
+               title: '@Type',
+               message: '@Message',
+           });
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

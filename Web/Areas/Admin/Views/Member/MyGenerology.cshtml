@@ -1,0 +1,237 @@
+﻿@model Web.Areas.Admin.MemberModel
+@{
+    ViewBag.Title = "MyGenerology";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    /*Now the CSS*/
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    /*#ContentPlaceHolder1_TreeView {
+            width:100% !important;
+            overflow-x: scroll !important;
+            }*/
+    .tree ul {
+        padding-top: 20px;
+        position: relative;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        /*width: 1500px !important;*/
+    }
+
+    .tree li {
+        float: left;
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        color: blue;
+        padding: 20px 10px 0 5px;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+    }
+
+        /*We will use ::before and ::after to draw the connectors*/
+
+        .tree li::before, .tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 1px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+
+        .tree li::after {
+            right: auto;
+            left: 50%;
+            border-left: 1px solid #ccc;
+        }
+
+        /*We need to remove left-right connectors from elements without
+    any siblings*/
+        .tree li:only-child::after, .tree li:only-child::before {
+            display: none;
+        }
+        /*Remove space from the top of single children*/
+        .tree li:only-child {
+            padding-top: 0;
+        }
+
+        /*Remove left connector from first child and
+    right connector from last child*/
+        .tree li:first-child::before, .tree li:last-child::after {
+            border: 0 none;
+        }
+        /*Adding back the vertical connector to the last nodes*/
+        .tree li:last-child::before {
+            border-right: 1px solid #ccc;
+            border-radius: 0 5px 0 0;
+            -webkit-border-radius: 0 5px 0 0;
+            -moz-border-radius: 0 5px 0 0;
+        }
+
+        .tree li:first-child::after {
+            border-radius: 5px 0 0 0;
+            -webkit-border-radius: 5px 0 0 0;
+            -moz-border-radius: 5px 0 0 0;
+        }
+
+    /*Time to add downward connectors from parents*/
+    .tree ul ul::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        border-left: 1px solid #ccc;
+        width: 0;
+        height: 20px;
+    }
+
+    .tree li a {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #666;
+        font-family: arial, verdana, tahoma;
+        font-size: 11px;
+        display: inline-block;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+    }
+        /*Time for some hover effects*/
+        /*We will apply the hover effect the the lineage of the element also*/
+        .tree li a:hover, .tree li a:hover + ul li a {
+            background: #c8e4f8;
+            color: #000;
+            border: 1px solid #94a0b4;
+        }
+            /*Connector styles on hover*/
+            .tree li a:hover + ul li::after, .tree li a:hover + ul li::before, .tree li a:hover + ul::before, .tree li a:hover + ul ul::before {
+                border-color: #94a0b4;
+            }
+
+    /*Thats all. I hope you enjoyed it.
+    Thanks :)*/
+</style>
+<style>
+    div#pop-up {
+        display: none;
+        position: absolute;
+        width: 200px;
+        padding: 10px;
+        background: #eeeeee;
+        color: #000000;
+        border: 1px solid #1a1a1a;
+        font-size: 90%;
+    }
+
+    .tree img {
+        height: 70px;
+    }
+</style>
+
+<div class="page-wrapper">
+    <!--page-content-wrapper-->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">My Team</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item">
+                                <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">My Team</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="mb-0">My Team</h4>
+                    </div>
+                    <hr />
+                    <div class="tree" runat="server" id="TreeView" style="height: 800px; border: solid 2px orange; overflow: scroll; overflow-x: scroll; overflow-y: scroll;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="pop-up">
+    <p id="pdtls"></p>
+</div>
+<script>
+    function GetTreeData(Token_Id) {
+        showPreloader();
+        $.ajax({
+           type: 'POST',
+            url: '@Url.Action("UserTreeView", "Member")',
+            data: { Token_Id: Token_Id  },
+           success: function (data) {
+               $('#TreeView').html(data);
+               hidePreloader();
+           },
+           error: function (ex) {
+               console.log(ex);
+           }
+        });
+    }
+    $(document).ready(function () {
+        GetTreeData("");
+    })
+    function MouseOverEvent(Sponsor_Id, Sponsor_Name, Status_Name, TeamLevel, IsGoleComplete,event) {
+        $('div#pop-up').show();
+        $("div#pop-up").css('top', event.pageY + 10).css('left', event.pageX + 20);
+        var str = `Sponsor Id : ${Sponsor_Id}<br>
+           Sponsor Name : ${Sponsor_Name}<br>
+           Status : ${Status_Name}<br>
+           Gole Completed : ${IsGoleComplete}<br>
+           Level: ${TeamLevel}`
+        $("#pdtls").html(str);
+    }
+    function MouseOutEvent() {
+        $('div#pop-up').hide();
+    }
+</script>
+<script>
+    function RedirectToRegistration(Data) {
+        debugger
+        var Sponcer_Id = String(Data).split(",")[0];
+        var Position = String(Data).split(",")[1];
+        var Parent_Id = String(Data).split(",")[2];
+        var UrlData = `S=${Sponcer_Id}&&P=${Parent_Id}&&PO=${Position}`;
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetIncreptedUrl", "Member")',
+            data: { UrlData: UrlData  },
+            success: function (data) {
+                debugger
+                if (data.Remain_Id == "No_Data") {
+                    iziToast.success({
+                        title: 'Alert',
+                        message: 'No Active Id Parents Please Purchase Id',
+                    });
+                }else {
+                    var Url = `../../Home/RegistrationUrl?${data}`;
+                    window.open(Url, '_blank');
+                }
+            },
+           error: function (ex) {
+               console.log(ex);
+           }
+        });
+    }
+</script>

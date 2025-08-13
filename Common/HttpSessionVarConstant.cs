@@ -1,0 +1,14 @@
+﻿namespace Common
+{
+    public class HttpSessionVarConstant
+    {
+        public static string HTTP_SESSION_LOGGED_USER_ID = "HTTP_SESSION_LOGGED_USER_ID";
+        public static string HTTP_SESSION_LOGGED_USER_NAME = "HTTP_SESSION_LOGGED_USER_NAME";
+        public static string HTTP_SESSION_LOGGED_EMAIL_ID = "HTTP_SESSION_LOGGED_EMAIL_ID";
+        public static string HTTP_SESSION_LOGGED_USER_ROLE_ID = "HTTP_SESSION_LOGGED_USER_ROLE_ID";
+        public static string HTTP_SESSION_LOGGED_USER_ROLE_NAME = "HTTP_SESSION_LOGGED_USER_ROLE_NAME";
+        public static string HTTP_SESSION_LOGGED_USER_PERMISSION = "HTTP_SESSION_LOGGED_USER_PERMISSION";
+        public static string HTTP_SESSION_LOGGED_CANDIDATE_PROFILE_ID = "HTTP_SESSION_LOGGED_CANDIDATE_PROFILE_ID";
+
+    }
+}

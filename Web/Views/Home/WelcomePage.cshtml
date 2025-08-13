@@ -1,0 +1,132 @@
+﻿@model Web.Models.HomeModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Ujjawal Sanskar</title>
+    <!--<< Favicon >>-->
+    <link rel="shortcut icon" href="~/Areas/Admin/Content/assets/images/favicon-32x32.png">
+    <!--plugins-->
+    <link href="~/Areas/Admin/Content/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <!-- loader-->
+    <link href="~/Areas/Admin/Content/assets/css/pace.min.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/assets/js/pace.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&amp;family=Roboto&amp;display=swap" />
+    <!-- Icons CSS -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/icons.css" />
+    <!-- App CSS -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/app.css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/dark-sidebar.css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/dark-theme.css" />
+    <style>
+        #CardBack {
+            background-image: url(../../Content/assets/my_image/abstract1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #mainBody {
+            background-image: url(../../Content/assets/my_image/abstract2.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv=content-language content=en>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Ujjawal Sanskar" />
+    <meta name=rating content=general>
+    <meta name=referrer content=origin>
+    <meta property=og:country_name content=India>
+    <meta property=og:type content=website>
+    <meta property=og:phone_number content=+919632078456>
+    <meta name=twitter:creator content="Ujjawal Sanskar">
+    <meta name=twitter:creator:id content="Ujjawal Sanskar">
+    <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
+    <meta name="google-site-verification" content="dvlUCJMIuOqYKRaS_nOENbAcaHqdWsUW39UdTcNKh2w" />
+</head>
+
+<body id="mainBody">
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 pt-5">
+            <div class="card radius-15 " id="CardBack">
+                <div class="card-body text-center">
+                    <h2><span class="text-danger">Ujjawal </span>Sanskar</h2>
+                    <a href="@Url.Action("Home","Home")">
+                        @if (!String.IsNullOrEmpty(Model.Registration_Obj.Img_File))
+                        {
+                            <img src="@Url.Content(Model.Registration_Obj.Img_File)" width="120" height="120" class="rounded-circle p-1 border bg-white" alt="" />
+                        }
+                        else
+                        {
+                            <img src="~/Areas/Admin/Content/assets/images/favicon-32x32.png" width="120" height="120" class="rounded-circle p-1 border bg-white" alt="" />
+                        }
+                    </a>
+                    <h2 class="text-danger">Welcome <span class="mb-0 text-black">@Model.Registration_Obj.Full_Name</span></h2>
+                    <table class="table table-responsive table-bordered fs-3">
+                        <tr>
+                            <th class="mb-0 text-dark fw-bolder">User Id  </th>
+                            <td>@Model.Registration_Obj.Token_Id</td>
+                        </tr>
+                        <tr>
+                            <th class="mb-0 text-dark fw-bolder">Password  </th>
+                            <td>@Model.Registration_Obj.Password</td>
+                        </tr>
+                        <tr>
+                            <th class="mb-0 text-dark fw-bolder">Sponser Id  </th>
+                            <td>@Model.Registration_Obj.Sponsor_Id</td>
+                        </tr>
+                        <tr>
+                            <th class="mb-0 text-dark fw-bolder">Parent Id  </th>
+                            <td>@Model.Registration_Obj.Parent_Id</td>
+                        </tr>
+                        <tr>
+                            <th class="mb-0 text-dark fw-bolder">Position  </th>
+                            <td>@Model.Registration_Obj.Position</td>
+                        </tr>
+                    </table>
+                    <div class="list-inline contacts-social mt-3 fs-3 fw-bold">
+                        <a href="##" class="list-inline-item text-twitter" target="_blank">
+                            <i class="bx bxl-twitter"></i>
+                        </a>
+                        <a href="##" class=" list-inline-item text-instagram" target="_blank">
+                            <i class="bx bxl-instagram"></i>
+                        </a>
+
+                        <a href="##" target="_blank" class="list-inline-item text-youtube">
+                            <i class="bx bxl-youtube"></i>
+                        </a>
+                        <a href="##" target="_blank" class="list-inline-item text-telegram">
+                            <i class="bx bxl-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Areas/Admin/Content/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!--plugins-->
+    <script src="~/Areas/Admin/Content/assets/js/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/simplebar/js/simplebar.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/metismenu/js/metisMenu.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <!-- App JS -->
+    <script src="~/Areas/Admin/Content/assets/js/app.js"></script>
+</body>
+</html>

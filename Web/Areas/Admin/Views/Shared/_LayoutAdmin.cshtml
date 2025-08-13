@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Ujjawal Sanskar</title>
+    <!--favicon-->
+    <link rel="icon" href="~/Areas/Admin/Content/assets/images/favicon-32x32.png" type="image/png" />
+    <!-- Vector CSS -->
+    <link href="~/Areas/Admin/Content/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!--plugins-->
+    <link href="~/Areas/Admin/Content/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <!-- loader-->
+    <link href="~/Areas/Admin/Content/assets/css/pace.min.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/assets/js/pace.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&amp;family=Roboto&amp;display=swap" />
+    <!-- Icons CSS -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/icons.css" />
+    <!-- App CSS -->
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/app.css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/dark-sidebar.css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/dark-theme.css" />
+
+    <!--Data Tables -->
+    <link href="~/Areas/Admin/Content/assets/plugins/datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Areas/Admin/Content/assets/plugins/datatable/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <script src="~/Areas/Admin/Content/assets/js/jquery.min.js"></script>
+
+    <link href="~/Content/assets/iziToast/iziToast.min.css" rel="stylesheet" />
+    <script src="~/Content/assets/iziToast/iziToast.min.js"></script>
+</head>
+<body>
+    <div id="admin-preloader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;">
+        <div>
+            <div class="spinner-border text-primary" style="width:3rem;height:3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div style="text-align:center;margin-top:10px;">Loading...</div>
+        </div>
+    </div>
+    <!-- wrapper -->
+    <div class="wrapper">
+        <!--sidebar-wrapper-->
+        <div class="sidebar-wrapper" data-simplebar="true">
+            <div class="sidebar-header">
+                <a href="@Url.Action("Dashboard","Home")" class="d-flex">
+                    <div class="">
+                        <img src="~/Areas/Admin/Content/assets/images/favicon-32x32.png" class="logo-icon-2" alt="" />
+                    </div>
+                    <div>
+                        <h6 class="logo-text">Ujjawal <span style="color: #909293;">Sanskar</span></h6>
+                    </div>
+                </a>
+                <a href="javascript:;" class="toggle-btn ms-auto">
+                    <i class="bx bx-menu"></i>
+                </a>
+            </div>
+            <!--navigation-->
+            @Html.Action("Menu", "Home")
+            <!--end navigation-->
+        </div>
+        <!--end sidebar-wrapper-->
+        <!--header-->
+        @Html.Action("Header", "Home")
+        <!--end header-->
+        <!--page-wrapper-->
+        @RenderBody()
+        <!--end page-wrapper-->
+        <!--start overlay-->
+        <div class="overlay toggle-btn-mobile"></div>
+        <!--end overlay-->
+        <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+        <!--End Back To Top Button-->
+        <!--footer -->
+        @Html.Action("Footer", "Home")
+        <!-- end footer -->
+    </div>
+    <!-- end wrapper -->
+
+    <script src="~/Areas/Admin/Content/assets/plugins/simplebar/js/simplebar.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/metismenu/js/metisMenu.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <!-- Vector map JavaScript -->
+    <script src="~/Areas/Admin/Content/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/vectormap/jquery-jvectormap-in-mill.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/vectormap/jquery-jvectormap-us-aea-en.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/vectormap/jquery-jvectormap-uk-mill-en.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/vectormap/jquery-jvectormap-au-mill.js"></script>
+    <script src="~/Areas/Admin/Content/assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/js/index.js"></script>
+
+    <script src="~/Areas/Admin/Content/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Content/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- App JS -->
+    <script src="~/Areas/Admin/Content/assets/js/app.js"></script>
+    <script>
+        new PerfectScrollbar('.dashboard-social-list');
+        new PerfectScrollbar('.dashboard-top-countries');
+    </script>
+    <script>
+        $(window).on('load', function () {
+            $('#admin-preloader').fadeOut(300);
+        });
+        $(document).ready(function () {
+            //Default data table
+            $('#example').DataTable();
+            var table = $('#example2').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
+            });
+            table.buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+        });
+        function showPreloader() {
+            $('#admin-preloader').fadeIn(200);
+        }
+
+        function hidePreloader() {
+            $('#admin-preloader').fadeOut(200);
+        }
+    </script>
+</body>
+
+</html>

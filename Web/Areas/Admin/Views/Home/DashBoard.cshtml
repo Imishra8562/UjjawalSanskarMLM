@@ -1,0 +1,364 @@
+﻿@model Web.Areas.Admin.HomeModel
+@{
+    ViewBag.Title = "DashBoard";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var Type = TempData["AlertType"] ?? string.Empty;
+    var Message = TempData["AlertMessage"] ?? string.Empty;
+}
+
+<!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .party-btn {
+        margin-top: 100px;
+    }
+
+    .modal-content {
+        background: linear-gradient(to right, #fffaf0, #e0f7fa);
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .celebrate {
+        animation: pulse 1.5s infinite;
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .congrats-title {
+        font-size: 2rem;
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .user-details {
+        font-size: 1.2rem;
+        color: #343a40;
+    }
+</style>
+
+@if (Common.CookiesStateManager.Cookies_Logged_User_Role_Id == "3")
+{
+    <div class="page-wrapper">
+        <!--page-content-wrapper-->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Token Id</p>
+                                        <h3 class="mb-0">@Model.Registration_Business_Obj.Token_Id</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Sponsor Id</p>
+                                        <h3 class="mb-0">@Model.Registration_Business_Obj.Sponsor_Id</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Parent Id</p>
+                                        <h3 class="mb-0">@Model.Registration_Business_Obj.Parent_Id</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Team</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Count()</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Active Team</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => u.FK_Reg_Status_Id == 2).Count()</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Pending Team</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => u.FK_Reg_Status_Id == 1).Count()</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Registration Fee</p>
+                                        <h3 class="mb-0">@Model.Registration_Business_Obj.Total_Reg_Fee_Paid</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if ((bool)Model.Registration_Business_Obj.IsGoleComplete)
+                    {
+                        <div class="col-12 col-lg-3">
+                            <div>
+                                <button class="btn btn-lg btn-success" id="partybutton" data-bs-toggle="modal" data-bs-target="#congratsModal">
+                                    🎉 Show Gift
+                                </button>
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $("#partybutton").click();
+                            })
+                        </script>
+                    }
+                </div>
+                <!--end row-->
+            </div>
+        </div>
+        <!--end page-content-wrapper-->
+    </div>
+
+    <!-- Audio -->
+    <audio id="partyMusic" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_bfc9c9b6ce.mp3?filename=party-horn-1-6832.mp3" preload="auto"></audio>
+    <!-- Modal -->
+    <div class="modal fade" id="congratsModal" tabindex="-1" aria-labelledby="congratsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content p-4 shadow-lg" style=" background-color: cornsilk;">
+                <div class="modal-header border-0">
+                    <div class="d-flex justify-content-center">
+                        <h1 class="modal-title fs-3 text-success celebrate text-center" id="congratsModalLabel">🎉 Congratulations! 🎉</h1>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="congrats-title">Well Done, <span id="userName">Prince</span>!</p>
+                    <p class="user-details">Your User ID: <strong id="userId">USR10256</strong></p>
+                    <h4 class="mt-4">You've successfully completed <strong>Level 10</strong>! 🏆</h4>
+                    <p class="mt-2">As a reward for your consistent performance, you've received a:</p>
+                    <div class="badge bg-warning text-dark p-3 fs-5 mb-3">🎓 FREE SCHOLARSHIP</div>
+                    <p class="text-muted">Your journey has just begun. Keep it up!</p>
+                    <a href="javascript:void(0)" target="_blank" class="btn btn-primary mt-3">🎫 Contact Admin for Certificate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti + Music Script -->
+    <script>
+        function launchConfetti() {
+            // Two bursts from left and right bottom
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff0', '#0f0', '#f0f', '#0ff', '#f00']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff0', '#0f0', '#f0f', '#0ff', '#f00']
+                });
+
+                if (Date.now() < animationEnd) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+
+        $('#congratsModal').on('shown.bs.modal', function () {
+            $('#partyMusic')[0].play();
+            launchConfetti();
+        });
+
+        $('#congratsModal').on('hidden.bs.modal', function () {
+            $('#partyMusic')[0].pause();
+            $('#partyMusic')[0].currentTime = 0;
+        });
+    </script>
+}
+else
+{
+    <div class="page-wrapper">
+        <!--page-content-wrapper-->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">User Id</p>
+                                        <h3 class="mb-0">@Model.Registration_Business_Obj.Token_Id</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Registration</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Count()</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Pending Registration</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => u.FK_Reg_Status_Id == 1).Count()</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Rejected Registration</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => u.FK_Reg_Status_Id == 3).Count()</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Active Registration</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => u.FK_Reg_Status_Id == 2).Count()</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(to top, #e14fad 0%, #f9d423 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Pending KYC</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => !u.Is_KYC_Approved && u.FK_Reg_Status_Id == 2).Count()</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Collect(Without GST)</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => u.FK_Reg_Status_Id == 2).Sum(u => u.Registration_Fee)</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(-225deg, #DFFFCD 0%, #90F9C4 48%, #39F3BB 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Gst Collectd</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => u.FK_Reg_Status_Id == 2).Sum(u => u.Registration_Gst)</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card radius-15 overflow-hidden" style="background-image: linear-gradient(-225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">Total Collection(With GST)</p>
+                                        <h3 class="mb-0">@Model.List_Registration_Businesses_Obj.Where(u => u.FK_Reg_Status_Id == 2).Sum(u => u.Total_Reg_Fee_Paid)</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+      var Message = '@Message';
+    if (Message != '') {
+        iziToast.success({
+            title: '@Type',
+            message: '@Message',
+        });
+    }
+</script>

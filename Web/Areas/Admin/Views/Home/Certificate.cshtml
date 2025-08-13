@@ -1,0 +1,211 @@
+﻿@model Web.Areas.Admin.HomeModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scholarship Certificate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- html2pdf CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            background: #f5f5f5;
+            font-family: 'Georgia', serif;
+            padding: 30px;
+        }
+
+        .certificate {
+            background: #fff;
+            border: 10px solid #0d6efd;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .certificate-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .certificate-logo {
+            width: 160px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .company-name {
+            font-size: 28px;
+            color: #0d6efd;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .certificate-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+            color: #444;
+            text-align: center;
+        }
+
+        .certificate-body {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            padding: 0 40px;
+        }
+
+        .recipient-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            margin-top: 20px;
+        }
+
+        .certificate-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 0 40px;
+        }
+
+        .signature-block {
+            text-align: center;
+        }
+
+        .signature {
+            height: 60px;
+            margin-bottom: 5px;
+        }
+
+        .line {
+            border-top: 1px solid #000;
+            width: 200px;
+            margin: auto;
+        }
+
+        .amount-block {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+            .action-buttons button {
+                padding: 10px 20px;
+                margin: 10px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+        .btn-print {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .btn-download {
+            background-color: #198754;
+            color: white;
+        }
+
+        @@media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            .action-buttons {
+                display: none;
+            }
+
+            .certificate {
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Certificate Content -->
+    <div class="certificate" id="certificateContent">
+        <!-- Header -->
+        <div class="certificate-header">
+            <img src="~/Areas/Admin/Content/assets/images/logo-NoBg-Blue.png" class="certificate-logo" alt="Company Logo">
+            <div class="company-name">Ujjawal Sanskar.</div>
+        </div>
+
+        <!-- Title -->
+        <div class="certificate-title">Certificate of Achievement</div>
+
+        <!-- Body -->
+        <div class="certificate-body">
+            This is to certify that
+            <div class="recipient-name">@Model.Registration_Business_Obj.Full_Name (User ID: @Model.Registration_Business_Obj.Token_Id)</div>
+            has successfully completed Level 10 in our skill-building program and has been awarded a
+            <strong>Free Scholarship</strong> in recognition of their outstanding performance and commitment.
+        </div>
+
+        <!-- Scholarship Amount -->
+        <div class="amount-block">
+            Scholarship Amount: ₹10,000
+        </div>
+
+        <!-- Footer -->
+        <div class="certificate-footer">
+            <div class="signature-block">
+                <img src="https://via.placeholder.com/150x50.png?text=Signature" class="signature" alt="Signature">
+                <div class="line"></div>
+                <div>Mr. Ankit Sharma</div>
+                <small>Owner, Poshak Technologies</small>
+            </div>
+            <div class="signature-block">
+                <div class="line"></div>
+                <div>Date: <span id="todayDate"></span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Buttons -->
+    <div class="action-buttons">
+        <button class="btn-print" onclick="printCertificate()">🖨️ Print</button>
+        <button class="btn-download" onclick="downloadCertificate()">📥 Download PDF</button>
+    </div>
+
+    <!-- JS -->
+    <script>
+        // Set today's date
+        document.getElementById("todayDate").innerText = new Date().toLocaleDateString("en-IN");
+
+        // Print Certificate
+        function printCertificate() {
+            window.print();
+        }
+
+        // Download Certificate as PDF
+        function downloadCertificate() {
+            const element = document.getElementById("certificateContent");
+            html2pdf().set({
+                margin: 0.5,
+                filename: 'Scholarship_Certificate.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+            }).from(element).save();
+        }
+    </script>
+
+</body>
+</html>

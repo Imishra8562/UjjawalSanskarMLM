@@ -1,0 +1,115 @@
+﻿    <!-- header-area-start -->
+<header class="header header-3 sticky-active" style="height:165px;">
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <div class="top-bar-left">
+                    <ul class="top-bar-list">
+                        <li><i class="fa-regular fa-phone"></i><a href="tel:8709989856">+91 8709989856</a></li>
+                        <li><i class="fa-regular fa-location-dot"></i><span>Kayampur Samnapar Khusrupur</span></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <div class="top-social-wrap">
+                        <span>Follow Us</span>
+                        <ul class="social-list">
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+
+                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="primary-header">
+        <div class="container">
+            <div class="primary-header-inner">
+                <div class="header-logo d-lg-block">
+                    <a href="@Url.Action("Index","Home")">
+                        <img src="~/Content/assets/img/Banner/Logo_Ujjwal.png" style="width:77%;" />
+                        @*<img src="~/Content/assets/img/logo/logo-1.png" alt="Logo">*@
+                    </a>
+                </div>
+                <div class="header-menu-wrap">
+                    <div class="mobile-menu-items">
+                        <ul class="sub-menu">
+                            <li class=" mega-menu">
+                                <a href="@Url.Action("Index","Home")">Home</a>
+                            </li>
+                            <li class="">
+                                <a href="@Url.Action("About","Home")">About</a>
+
+                            </li>
+                            <li class="">
+                                <a href="@Url.Action("Service","Home")">Service</a>
+
+                            </li>
+                            <li class="">
+                                <a href="@Url.Action("Blog","Home")">Blog</a>
+                            </li>
+
+                            <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                            <li class="d-lg-none d-block">
+                                    <a href="@Url.Action("Login","Home")" target="_blank">Login</a>                                
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.header-menu-wrap -->
+                <div class="header-right-wrap">
+                    <div class="header-right">
+                        <a href="@Url.Action("Login","Home")" class="ed-primary-btn header-btn" >Login</a>
+
+                        <div class="header-logo d-none d-lg-none">
+                            <a href="@Url.Action("Index","Home")">
+                                <img src="~/Content/assets/img/Banner/Logo_Ujjwal.png" />
+                                @*<img src="~/Content/assets/img/logo/logo-1.png" alt="Logo">*@
+                            </a>
+                        </div>
+                        <div class="header-right-item d-lg-none d-md-block">
+                            <a href="javascript:void(0)" class="mobile-side-menu-toggle">
+                                <i class="fa-sharp fa-solid fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.header-right -->
+                </div>
+            </div>
+            <!-- /.primary-header-inner -->
+        </div>
+    </div>
+</header>
+<!-- /.Main Header -->
+
+<div id="popup-search-box">
+    <div class="box-inner-wrap d-flex align-items-center">
+        <form id="form" action="#" method="get" role="search">
+            <input id="popup-search" type="text" name="s" placeholder="Type keywords here...">
+        </form>
+        <div class="search-close"><i class="fa-sharp fa-regular fa-xmark"></i></div>
+    </div>
+</div>
+<!-- /#popup-search-box -->
+
+<div class="mobile-side-menu">
+    <div class="side-menu-content">
+        <div class="side-menu-head">
+            <a href="@Url.Action("Index","Home")">
+                <img src="~/Content/assets/img/Banner/Logo_Ujjwal.png" style="77%;" />
+                @*<img src="~/Content/assets/img/logo/logo-1.png" alt="logo">*@
+            </a>
+            <button class="mobile-side-menu-close"><i class="fa-regular fa-xmark"></i></button>
+        </div>
+
+        <div class="side-menu-wrap"></div>
+
+        <ul class="side-menu-list">
+            <li><i class="fa-light fa-location-dot"></i>Address : Kayampur Samnapar Khusrupur</li>
+            <li><i class="fa-light fa-phone"></i>Phone : <a href="tel:8709989856">+91 8709989856</a></li>
+            <li><i class="fa-light fa-envelope"></i>Email : <a href="mailto:info@example.com">info@example.com</a></li>
+        </ul>
+    </div>
+</div>

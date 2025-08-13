@@ -1,0 +1,119 @@
+﻿@model Web.Areas.Admin.HomeModel
+@{
+    ViewBag.Title = "WelcomeLetter";
+    Layout = null;
+}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Welcome Letter - Ujjawal Sanskar</title>
+    <!--favicon-->
+    <link rel="icon" href="~/Areas/Admin/Content/assets/images/favicon-32x32.png" type="image/png" />
+    <style>
+        @@page {
+            size: A4 landscape;
+            margin: 10mm;
+        }
+
+       /* body {
+            margin: 0;
+            padding: 0;
+            height: 250mm;
+        }*/
+
+        .border-pattern {
+            position: absolute;
+            left: 13mm;
+            top:12mm;
+            height: 178mm;
+            width: 267mm;
+            border: 1mm solid #2e4080;
+            background-color: #d6d6e4;
+            background-image: url('../../Areas/Admin/Content/assets/images/certificate.jpg');
+            background-size: contain;
+        }
+
+        .content {
+            position: absolute;
+            left: 10mm;
+            height: 184mm;
+            width: 245mm;
+        }
+
+        .inner-content {
+            margin: 10mm;
+            height: 155mm;
+            text-align: center;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-size: 48pt;
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 24pt;
+            margin-top: 0;
+            padding-bottom: 1mm;
+            display: inline-block;
+            border-bottom: 1mm solid #2e4080;
+        }
+
+            h2::after {
+                content: "";
+                display: block;
+                padding-bottom: 4mm;
+                border-bottom: 1mm solid #ef801c;
+            }
+
+        h3 {
+            font-size: 20pt;
+            margin-bottom: 0;
+            margin-top: 10mm;
+        }
+
+        p {
+            font-size: 16pt;
+        }
+
+        .print {
+            display: flex;
+            position: absolute;
+            margin: 0px 45%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="border-pattern">
+            <div class="content">
+                <div class="inner-content">
+                    <h1>Welcome</h1>
+                    <h2>to Ujjawal Sanskar</h2>
+                    <h3>This Certificate Is Proudly Presented To</h3>
+                    <p>@Model.Registration_Business_Obj.Full_Name</p>
+                    <p>@Model.Registration_Business_Obj.Token_Id</p>
+                    <h3>Note</h3>
+                    <p style="font-size: large;">
+                        Welcome to be a proud member of "Ujjawal Sanskar" . We really appreciate your faith on us. At Ujjawal Sanskar You will now realise that dreams are not that difficult and success is with in your sight. You are now a part of the opportunity of the millennium. Yuvaniketana Foundation is an exciting "NON PROFIT ORGANISATION". An NGO  that has the potential to turn your dreams into reality. As you build your business, you will establish lifelong friendships and develop support systems unparalleled in any other business. We are confident that you will receive gratification from your involvement with Yuvaniketana Foundation and we wish you every Success! Please note we are providing you an opportunity to earn money which is optional, Here you can help people And you can get help from people,your earnings will depend directly in the amount of efforts you put to develop your business there is no fixed salary The NGO will people through Social Activities. For further details login with your user Id and Password.
+                    </p>
+                </div>
+                <div class="print">
+                    <button value="Print" id="LtrBtn" onclick="PrintLetter();" style="position: absolute;z-index: 1;">Print Cerificate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function PrintLetter() {
+        document.getElementById("LtrBtn").style.display = "none";
+        window.print();
+        document.getElementById("LtrBtn").style.display = "block";
+    }
+</script>
+

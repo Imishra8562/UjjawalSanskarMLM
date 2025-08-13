@@ -1,0 +1,130 @@
+﻿<ul class="metismenu" id="menu">
+    @if (Common.CookiesStateManager.Cookies_Logged_User_Role_Id == "1" || Common.CookiesStateManager.Cookies_Logged_User_Role_Id == "2")
+    {
+        <li>
+            <a href="@Url.Action("Dashboard","Home")" class="has-arrow">
+                <div class="parent-icon icon-color-1">
+                    <i class="bx bx-home-alt"></i>
+                </div>
+                <div class="menu-title">Dashboard</div>
+            </a>
+        </li>
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-10">
+                    <i class="bx bx-group"></i>
+                </div>
+                <div class="menu-title">User Profile</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("UserProfile","Home")"><i class="bx bx-right-arrow-alt"></i>View Profile</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ChangePassword","Security")"><i class="bx bx-right-arrow-alt"></i>Update Password</a>
+                </li>
+                @*<li>
+                        <a href="@Url.Action("WelcomeLetter","Home")"><i class="bx bx-right-arrow-alt"></i>Welcome Letter</a>
+                    </li>*@
+            </ul>
+        </li>
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-10">
+                    <i class="bx bx-spa"></i>
+                </div>
+                <div class="menu-title">View User</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("UserList","Admin")"><i class="bx bx-right-arrow-alt"></i> View User</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="@Url.Action("PendingRegistration","Member")" class="has-arrow">
+                <div class="parent-icon icon-color-5">
+                    <i class="bx bx-group"></i>
+                </div>
+                <div class="menu-title">Pending Registration</div>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("PendingKyc","Member")" class="has-arrow">
+                <div class="parent-icon icon-color-5">
+                    <i class="bx bx-group"></i>
+                </div>
+                <div class="menu-title">Pending Kyc</div>
+            </a>
+        </li>            
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-10">
+                    <i class="bx bx-spa"></i>
+                </div>
+                <div class="menu-title">My Team</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("MyTeam","Member")"><i class="bx bx-right-arrow-alt"></i>My All Team</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("MyGenerology","Member")"><i class="bx bx-right-arrow-alt"></i>Tree View</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("UserGoleComList","Member")"><i class="bx bx-right-arrow-alt"></i>Gole Completed List</a>
+                </li>
+            </ul>
+        </li>              
+    }
+    else
+    {
+        <li>
+            <a href="@Url.Action("Dashboard","Home")" class="has-arrow">
+                <div class="parent-icon icon-color-1">
+                    <i class="bx bx-home-alt"></i>
+                </div>
+                <div class="menu-title">Dashboard</div>
+            </a>
+        </li>
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-10">
+                    <i class="bx bx-group"></i>
+                </div>
+                <div class="menu-title">User Profile</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("UserProfile","Member")"><i class="bx bx-right-arrow-alt"></i>View Profile</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ChangePassword","Security")"><i class="bx bx-right-arrow-alt"></i>Update Password</a>
+                </li>
+                @*<li>
+                    <a href="@Url.Action("WelcomeLetter","Home")"><i class="bx bx-right-arrow-alt"></i>Welcome Letter</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("IDCard","Home")"><i class="bx bx-right-arrow-alt"></i>ID Card</a>
+                </li>*@
+            </ul>
+        </li>                      
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-10">
+                    <i class="bx bx-spa"></i>
+                </div>
+                <div class="menu-title">My Team</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="@Url.Action("MyTeam","Member")"><i class="bx bx-right-arrow-alt"></i>My All Team</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("MyGenerology","Member")"><i class="bx bx-right-arrow-alt"></i>Tree View</a>
+                </li>
+            </ul>
+        </li>             
+    }
+</ul>
+
