@@ -47,7 +47,7 @@
 AS
 BEGIN
     BEGIN TRY
-        DECLARE @Registration_Id INT = (SELECT top 1 Registration_Id FROM tbl_Registration WHERE Mobile=@Mobile OR Email=@Email)
+        DECLARE @Registration_Id INT = (SELECT top 1 Registration_Id FROM tbl_Registration WHERE Email=@Email)
 
         IF(@Registration_Id IS NULL)
         BEGIN

@@ -799,7 +799,7 @@ namespace Web.Areas.Admin.Controllers.Member
                     </html>";
 
                 // Use HomeController's SendMail
-                new Web.Controllers.HomeController().SendMail("prince.project1901@gmail.com", to, subject, body);
+                new Web.Controllers.HomeController().SendMail("info@Ujjawalsansakar.co.in", to, subject, body);
                 TempData["AlertType"] = "SUCCESS";
                 TempData["AlertMessage"] = "Registration Status Updated Successfully !";
             }

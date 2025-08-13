@@ -218,7 +218,7 @@ namespace Web.Controllers
         {
             try
             {
-                FROM = "princekumar.ifb@gmail.com";
+                FROM = "info@Ujjawalsansakar.co.in";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 MailMessage message = new MailMessage(FROM, To);
                 message.Subject = Subject;
@@ -227,7 +227,7 @@ namespace Web.Controllers
                 message.IsBodyHtml = true;
                 SmtpClient client = new SmtpClient("smtp-relay.brevo.com", 587); // Brevo SMTP
                 client.UseDefaultCredentials = false;
-                NetworkCredential basicCredential1 = new NetworkCredential("93b4ff003@smtp-brevo.com", "4HWsVARwdGL8bkMg"); // Replace with your Brevo email and SMTP key
+                NetworkCredential basicCredential1 = new NetworkCredential("949c19001@smtp-brevo.com", "5R0m2TdqAw4K1JCz"); // Replace with your Brevo email and SMTP key
                 client.EnableSsl = true;
                 client.Credentials = basicCredential1;
                 client.Send(message);
