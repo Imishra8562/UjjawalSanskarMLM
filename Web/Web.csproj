@@ -128,6 +128,7 @@
     <Compile Include="Areas\Admin\Model\SecurityModel.cs" />
     <Compile Include="Controllers\Core\HasPermissionAttribute.cs" />
     <Compile Include="Controllers\Core\SessionExpireFilterAttribute.cs" />
+    <Compile Include="Controllers\Error\ErrorController.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -846,6 +847,7 @@
     <Content Include="Content\assets\fonts\fa-thin-100.woff2" />
     <Content Include="Content\assets\font\fa-v4compatibility-2.html" />
     <Content Include="Content\assets\font\fa-v4compatibility.html" />
+    <Content Include="Content\assets\images\404-icon.jpg" />
     <Content Include="Content\assets\images\Blank_Icon.png" />
     <Content Include="Content\assets\images\Female_Icon.png" />
     <Content Include="Content\assets\images\loader.html" />
@@ -1661,7 +1663,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Upload\Member\ProfileImage\BP5168261_2" />
     <Content Include="Views\Home\Blog.cshtml" />
