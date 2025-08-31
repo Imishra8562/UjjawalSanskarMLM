@@ -87,7 +87,8 @@
                             <div class="col-md-6">@Html.Label("Sponsor Name") @Html.TextBoxFor(m => m.Registration_Obj.Sponsor_Name, new { @class = "form-control", @readonly = "readonly" })</div>
 
                             <!-- Add more sponsor fields as needed -->
-                            <div class="col-md-12 d-flex justify-content-end">
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button type="button" onclick="CopyReferalLink()" class="btn btn-primary"><i class="far fa-copy"></i> Copy Link</button>
                                 <button type="button" class="btn btn-primary" onclick="goToTab('#personal')">Next</button>
                             </div>
                         </div>
