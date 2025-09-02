@@ -9,7 +9,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Ujjawal Sanskar</title>
+    <title>Ujjawal Sansakar</title>
     <!--<< Favicon >>-->
     <link rel="shortcut icon" href="~/Areas/Admin/Content/assets/images/favicon-32x32.png">
     <!--plugins-->
@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/app.css" />
     <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/dark-sidebar.css" />
     <link rel="stylesheet" href="~/Areas/Admin/Content/assets/css/dark-theme.css" />
+    <link href="~/Content/assets/iziToast/iziToast.min.css" rel="stylesheet" />
+    <script src="~/Content/assets/iziToast/iziToast.min.js"></script>
     <style>
         #CardBack {
             background-image: url(../../Content/assets/my_image/abstract1.jpg);
@@ -49,14 +51,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="Ujjawal Sanskar" />
+    <meta property="og:site_name" content="Ujjawal Sansakar" />
     <meta name=rating content=general>
     <meta name=referrer content=origin>
     <meta property=og:country_name content=India>
     <meta property=og:type content=website>
     <meta property=og:phone_number content=+919632078456>
-    <meta name=twitter:creator content="Ujjawal Sanskar">
-    <meta name=twitter:creator:id content="Ujjawal Sanskar">
+    <meta name=twitter:creator content="Ujjawal Sansakar">
+    <meta name=twitter:creator:id content="Ujjawal Sansakar">
     <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
     <meta name="google-site-verification" content="dvlUCJMIuOqYKRaS_nOENbAcaHqdWsUW39UdTcNKh2w" />
 </head>
@@ -66,8 +68,8 @@
         <div class="col-lg-4 offset-lg-4 pt-5">
             <div class="card radius-15 " id="CardBack">
                 <div class="card-body text-center">
-                    <h2><span class="text-danger">Ujjawal </span>Sanskar</h2>
-                    <a href="@Url.Action("Home","Home")">
+                    <h2><span class="text-danger">Ujjawal </span>Sansakar</h2>
+                    <a href="@Url.Action("Index","Home")">
                         @if (!String.IsNullOrEmpty(Model.Registration_Obj.Img_File))
                         {
                             <img src="@Url.Content(Model.Registration_Obj.Img_File)" width="120" height="120" class="rounded-circle p-1 border bg-white" alt="" />
@@ -115,6 +117,7 @@
                             <i class="bx bxl-telegram"></i>
                         </a>
                     </div>
+                    <a href="@Url.Action("Index","Home")" class="text-center fw-bolder fs-5 text-decoration-underline" ><i class="fa fa-home"></i> Go To Home</a>
                 </div>
             </div>
         </div>

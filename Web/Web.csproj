@@ -859,6 +859,8 @@
     <Content Include="Content\assets\img\Banner\About_2c.jpg" />
     <Content Include="Content\assets\img\Banner\About_B.jpeg" />
     <Content Include="Content\assets\img\Banner\About_B.png" />
+    <Content Include="Content\assets\img\Banner\ambedkar-jayanti.jpg" />
+    <Content Include="Content\assets\img\Banner\Ambedkar.png" />
     <Content Include="Content\assets\img\Banner\Banner 2.jpg" />
     <Content Include="Content\assets\img\Banner\Banner_1.jpeg" />
     <Content Include="Content\assets\img\Banner\Banner_3.jpg" />
@@ -875,6 +877,7 @@
     <Content Include="Content\assets\img\Banner\Contact_1.jpg" />
     <Content Include="Content\assets\img\Banner\Contac_banner.jpg" />
     <Content Include="Content\assets\img\Banner\Conttact_Us.png" />
+    <Content Include="Content\assets\img\Banner\Image_About.jpg" />
     <Content Include="Content\assets\img\Banner\Logo_Ujjwal.png" />
     <Content Include="Content\assets\img\Banner\Serice_2.jpg" />
     <Content Include="Content\assets\img\Banner\Service_1.jpg" />
@@ -883,6 +886,9 @@
     <Content Include="Content\assets\img\Banner\service_5.jpg" />
     <Content Include="Content\assets\img\Banner\service_6.jpg" />
     <Content Include="Content\assets\img\Banner\Service_Banner.jpg" />
+    <Content Include="Content\assets\img\Banner\team_Picture.jpg" />
+    <Content Include="Content\assets\img\Banner\team_Picture.png" />
+    <Content Include="Content\assets\img\Banner\Vice_President.jpg" />
     <Content Include="Content\assets\img\bg-img\cta-bg-img.png" />
     <Content Include="Content\assets\img\bg-img\cta-bg.png" />
     <Content Include="Content\assets\img\bg-img\footer-bg.png" />

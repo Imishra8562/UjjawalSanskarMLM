@@ -96,9 +96,9 @@ namespace Web.Areas.Admin.Controllers.Member
                 style = "style = 'color: red;'";
                 img = "/Content/assets/images/Female_Icon.png";
             }
-            msg += $"<li><a class='over' onmouseover=MouseOverEvent('{data["Sponsor_Id"]}','{data["Sponsor_Name"]}','{data["Status_Name"]}','{data["TeamLevel"]}','{data["IsGoleComplete"]}',event) " +
+            msg += $"<li><a class='over' onmouseover=MouseOverEvent('{data["Sponsor_Id"]}','{data["Sponsor_Name"].ToString().Replace(" ", "-")}','{data["Status_Name"]}','{data["TeamLevel"]}','{data["IsGoleComplete"]}',event) " +
              $"onmouseout=MouseOutEvent() onclick=GetTreeData('{data["Token_ID"]}') >" +
-             $"<img src='{img}' alt=''> <p {style} > {data["Full_Name"]} </p>{data["Token_ID"]} ({data["Position"]})";
+             $"<img src='{img}' alt=''> <p {style} > {data["Full_Name"].ToString().Replace(" ","-")} </p>{data["Token_ID"]} ({data["Position"]})";
 
             msg += "</a>";
             var dr3 = dt.Select("Parent_ID= '" + data["Token_ID"] + "'");
@@ -124,8 +124,8 @@ namespace Web.Areas.Admin.Controllers.Member
                 style = "style = 'color: red;'";
                 img = "/Content/assets/images/Female_Icon.png";
             }
-            msg += $"<li><a class='over' onmouseover=MouseOverEvent('{data["Sponsor_Id"]}','{data["Sponsor_Name"]}','{data["Status_Name"]}','{data["TeamLevel"]}','{data["IsGoleComplete"]}',event) " +
-                $" onmouseout=MouseOutEvent() onclick=GetTreeData('{data["Token_ID"]}') ><img src='{img}' alt=''> <p {style}> {data["Full_Name"]} </p>{data["Token_ID"]}({data["Position"]})";
+            msg += $"<li><a class='over' onmouseover=MouseOverEvent('{data["Sponsor_Id"]}','{data["Sponsor_Name"].ToString().Replace(" ", "-")}','{data["Status_Name"]}','{data["TeamLevel"]}','{data["IsGoleComplete"]}',event) " +
+                $" onmouseout=MouseOutEvent() onclick=GetTreeData('{data["Token_ID"]}') ><img src='{img}' alt=''> <p {style}> {data["Full_Name"].ToString().Replace(" ", "-")} </p>{data["Token_ID"]}({data["Position"]})";
             msg += "</a>";
             return msg;
         }
@@ -180,7 +180,7 @@ namespace Web.Areas.Admin.Controllers.Member
                         img = "/Content/assets/images/Female_Icon.png";
                     }
                     msg += "<ul style='width: 1400px;'>";
-                    msg += $"<li><a class='over' onmouseover=MouseOverEvent('{dataRow["Sponsor_Id"].ToString()}','{dataRow["Sponsor_Name"].ToString()}'," +
+                    msg += $"<li><a class='over' onmouseover=MouseOverEvent('{dataRow["Sponsor_Id"].ToString()}','{dataRow["Sponsor_Name"].ToString().Replace(" ", "-")}'," +
                         $"'{dataRow["Status_Name"].ToString()}','{dataRow["TeamLevel"].ToString()}','{dataRow["IsGoleComplete"].ToString()}',event)" +
                         $" onmouseout=MouseOutEvent() onclick=GetTreeData('{Token_Id}') ><img src='{img}' alt=''> <p>{dataRow["Full_Name"].ToString()}</p>{Token_Id}";
                     msg += "</a><ul>";
@@ -732,7 +732,7 @@ namespace Web.Areas.Admin.Controllers.Member
             MemberModel Model = new MemberModel();
             Model.List_Registration_Businesses_Obj = homeManager.GetRegistration(0, 0, 0, null, null, null, null, null);
             Model.List_Registration_Businesses_Obj = Model.List_Registration_Businesses_Obj
-                .Where(u => !String.Equals(u.Token_Id, "US123456")).OrderBy(u => u.FK_Reg_Status_Id).ToList();
+                .Where(u => !String.Equals(u.Token_Id, "US123456" ) && u.FK_Reg_Status_Id != 2).OrderBy(u => u.FK_Reg_Status_Id).ToList();
             return View(Model);
         }
         [CookiesExpireFilter]
@@ -762,14 +762,14 @@ namespace Web.Areas.Admin.Controllers.Member
             {
                 // Send status change email notification
                 string to = registration.Email;
-                string subject = "Your Registration Status Updated - Ujjawal Sanskar";
+                string subject = "Your Registration Status Updated - Ujjawal Sansakar";
                 string statusText = registration.FK_Reg_Status_Id == 2 ? "APPROVED" : "REJECTED";
                 string body = $@"
                     <!DOCTYPE html>
                     <html>
                     <head>
                         <meta charset='UTF-8'>
-                        <title>Welcome to Ujjawal Sanskar</title>
+                        <title>Welcome to Ujjawal Sansakar</title>
                         <style>
                             body {{ font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }}
                             .container {{ max-width: 600px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; padding: 30px; }}
@@ -786,13 +786,13 @@ namespace Web.Areas.Admin.Controllers.Member
                             </div>
                             <div class='content'>
                                 <p>Dear <b>{registration.Full_Name}</b>,</p>
-                                <p>Your registration status for <b>Ujjawal Sanskar</b> has been updated by the admin.</p>
+                                <p>Your registration status for <b>Ujjawal Sansakar</b> has been updated by the admin.</p>
                                 <p class='status'>Current Status: {statusText}</p>
                                 {(registration.FK_Reg_Status_Id == 2 ? "<p>Congratulations! Your account is now active. You can log in and start using all features.</p>" :
                                 "<p>We regret to inform you that your registration has been rejected. For more information, please contact support.</p>")}
                             </div>
                             <div class='footer'>
-                                &copy; {DateTime.Now.Year} Ujjawal Sanskar. All rights reserved.
+                                &copy; {DateTime.Now.Year} Ujjawal Sansakar. All rights reserved.
                             </div>
                         </div>
                     </body>

@@ -145,13 +145,13 @@ namespace Web.Controllers
                 {
                     var reg = Model.Registration_Obj;
                     string to = reg.Email;
-                    string subject = "Welcome to Ujjawal Sanskar!";
+                    string subject = "Welcome to Ujjawal Sansakar!";
                     string body = $@"
                     <!DOCTYPE html>
                     <html>
                     <head>
                         <meta charset='UTF-8'>
-                        <title>Welcome to Ujjawal Sanskar</title>
+                        <title>Welcome to Ujjawal Sansakar</title>
                         <style>
                             body {{ font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }}
                             .container {{ max-width: 600px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; padding: 30px; }}
@@ -167,11 +167,11 @@ namespace Web.Controllers
                     <body>
                         <div class='container'>
                             <div class='header'>
-                                <h1>Welcome to Ujjawal Sanskar!</h1>
+                                <h1>Welcome to Ujjawal Sansakar!</h1>
                             </div>
                             <div class='content'>
                                 <p>Dear <b>{reg.Full_Name}</b>,</p>
-                                <p>We are thrilled to have you join the <b>Ujjawal Sanskar</b> family! Your registration was <b>successful</b>.</p>
+                                <p>We are thrilled to have you join the <b>Ujjawal Sansakar</b> family! Your registration was <b>successful</b>.</p>
                                 <div class='details'>
                                     <h3>Your Registration Details</h3>
                                     <ul>
@@ -192,7 +192,7 @@ namespace Web.Controllers
                                 <p>Thank you for choosing us. We wish you a wonderful journey ahead!</p>
                             </div>
                             <div class='footer'>
-                                &copy; {DateTime.Now.Year} Ujjawal Sanskar. All rights reserved.
+                                &copy; {DateTime.Now.Year} Ujjawal Sansakar. All rights reserved.
                             </div>
                         </div>
                     </body>
@@ -245,14 +245,10 @@ namespace Web.Controllers
             IHomeManager homeManager = new HomeManager();
             UserData data = new UserData();
             UrlData = EncryptionEngine.Base64Decode(UrlData);
-            int Index = 0;
-            Index = UrlData.IndexOf("Token");
-            data.Token_Id = UrlData.Substring(Index + 6, 8);
-            Index = UrlData.IndexOf('S');
-            data.Sponcer_Id = UrlData.Substring(Index + 2, 8);
-            Index = UrlData.IndexOf('P');
-            data.Parent_Id = UrlData.Substring(Index + 2, (UrlData.IndexOf("&&PO") - Index - 2));
-            data.Position = UrlData.Substring(UrlData.IndexOf("PO") + 3);
+            var data1 = UrlData.Split('&');
+            data.Sponcer_Id = data1[0].Split('=')[1];
+            data.Parent_Id = data1[2].Split('=')[1];
+            data.Position = data1[4].Split('=')[1];
             data.Sponcer_Name = homeManager.GetRegistration(0, 0, 0, data.Sponcer_Id, null, null, null, null).FirstOrDefault().Full_Name;
             data.Parent_Name = homeManager.GetRegistration(0, 0, 0, data.Parent_Id, null, null, null, null).FirstOrDefault().Full_Name;
             return Json(data, JsonRequestBehavior.AllowGet);

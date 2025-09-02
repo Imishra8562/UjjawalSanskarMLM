@@ -31,7 +31,7 @@ BEGIN
 	INNER JOIN tbl_User U WITH(NOLOCK) ON U.User_Id=RE.FK_User_Id
     INNER JOIN tbl_Status S WITH(NOLOCK) ON S.Status_Id=RE.FK_Reg_Status_Id
     INNER JOIN tbl_User_Role R WITH(NOLOCK) ON U.FK_User_Role_Id=R.User_Role_Id
-    INNER JOIN tbl_Team_Level TL WITH(NOLOCK) ON TL.Child_Token_No= RE.Token_Id AND TL.Parent_Token_No=@Master_Id
+    LEFT JOIN tbl_Team_Level TL WITH(NOLOCK) ON TL.Child_Token_No= RE.Token_Id AND TL.Parent_Token_No=@Master_Id
     
     order by TC.Level
 END TRY   
