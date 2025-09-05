@@ -245,6 +245,7 @@
             message: '@Message',
         });
     }
+
 </script>
 
 <script>
@@ -265,7 +266,26 @@
         if (!/^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test(email)) {
             showError('Invalid email format.');
             $(this).val('');
+            return;
         }
+
+        $.ajax({
+            url: `@Url.Action("CheckEmail", "Home")`,
+            data: { Email: email },
+            type: "POST",
+            success: function (response) {
+                debugger
+                if (response != null && response != "" && response == "false") {
+                    iziToast.success({ title: 'Completed', message: "Email Validated !" });
+                } else {
+                    showError('Email Used by ' + response);
+                }
+            },
+            error: function (request, status, error) {
+
+              console.log(error)
+            }
+        });
     });
 
     $('#Aadhar_No').on('blur', function () {

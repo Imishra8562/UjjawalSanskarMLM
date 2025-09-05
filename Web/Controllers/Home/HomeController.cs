@@ -281,6 +281,19 @@ namespace Web.Controllers
             Model.Registration_Obj = homeManager.GetRegistration(Registration_Id, 0, 0, null, null, null, null, null).FirstOrDefault();
             return View(Model);
         }
+
+        public ActionResult CheckEmail(string Email)
+        {
+            Registration registration = new HomeManager().GetRegistration(0, 0, 0, null, null, Email, null, null).FirstOrDefault(); 
+            if(registration!=null && !String.IsNullOrEmpty(registration.Full_Name))
+            {
+                return Json(registration.Full_Name);
+            }
+            else
+            {
+                return Json("false");
+            }                
+        }
         #endregion
     }
 }
