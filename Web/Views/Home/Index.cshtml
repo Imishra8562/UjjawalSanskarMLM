@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -143,7 +143,7 @@
                     <div class="icon"><img src="~/Content/assets/img/icon/promo-2.png" alt="promo"></div>
                     <div class="content white-content">
                         <h3 class="title">
-                            Your Future Starts Here
+                            Your Future Starts Herek
                         </h3>
                         <p>Begin your journey—gain knowledge, build confidence, shape your future</p>
                     </div>
@@ -171,8 +171,8 @@
             <div class="col-lg-6">
                 <div class="content-img-wrap-2 wow fade-in-left" data-wow-delay="400ms">
                     <div class="content-img">
-                        <img src="~/Content/assets/img/Banner/Image_About.jpg" alt="content" />
-                        @*<img src="~/Content/assets/img/Banner/About_B.jpeg" alt="content" />*@
+                        <img src="~/Content/assets/img/Banner/About_B.jpeg" alt="content" />
+                        @*<img src="~/Content/assets/img/images/content-img-4.png" >*@
                     </div>
                 </div>
             </div>
@@ -187,8 +187,8 @@
                         A game couldn’t be won by a single person
                         A war couldn’t be fought by a single person
                         You all know these things can be conquered by the "TEAM"!
-                        In a very similar manner, UJJAWAL SANSAKAR is progressing and working with the "TEAM".
-                        UJJAWAL SANSAKAR is very responsible about the team and students.
+                        In a very similar manner, UJJAWAL SANSKAR is progressing and working with the "TEAM".
+                        UJJAWAL SANSKAR is very responsible about the team and students.
                     </p>
                     <ul class="content-list wow fade-in-bottom" data-wow-delay="600ms">
                         <li>
@@ -199,13 +199,12 @@
                     </ul>
                     <div>
                         <h5>
-                            UJJAWAL SANSAKAR
+                            UJJAWAL SANSKAR
                         </h5>
                         <h6>
                             Value system revolves around <br />
                             TRUTH, TRANSPARENCY & COMMITMENT
                         </h6>
-                        <h4 class="text-primary">PRESIDENT</h4>
                     </div>
 
                 </div>
@@ -365,10 +364,7 @@
 <!-- ./ video-section -->
 
 <section class="cta-section pt-140 pb-140">
-
-    <div class="cta-bg-img">
-        <img src="~/Content/assets/img/Banner/Ambedkar.png" />
-    </div>
+    <div class="cta-bg-img"><img src="~/Content/assets/img/bg-img/cta-bg-img.png" alt="cta"></div>
     <div class="shapes">
         <div class="shape-1"><img src="~/Content/assets/img/shapes/dot-shape.png" alt="shape"></div>
         <div class="shape-2"><img src="~/Content/assets/img/shapes/cta-shape-2.png" alt="shape"></div>
@@ -452,6 +448,73 @@
         </div>
     </div>
 </section>
+<!-- Donation Section -->
+<section id="donate" class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center shadow-lg p-4 rounded-4 bg-white">
+
+            <!-- Left Side: Text -->
+            <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+                <h2 class="fw-bold text-primary mb-3">Support Students – Donate</h2>
+                <p class="mb-3">
+                    If you'd like to donate items for students, please send them to:<br>
+                    <strong>Kayampur, Samnapar, Khusrupur</strong>
+                </p>
+                <p class="mb-4">
+                    You can also support us with an online payment by scanning the QR code or choosing an amount below.
+                </p>
+
+                <div class="mb-4">
+                    <h5 class="fw-bold">📞 Contact Info</h5>
+                    <p class="mb-1"><i class="bi bi-telephone-fill text-primary"></i> +91 8709989856</p>
+                    <p class="mb-1"><i class="bi bi-envelope-fill text-primary"></i> info@ujjawalsansakar.in</p>
+                </div>
+
+                <!-- Donation Buttons -->
+                <h5 class="fw-bold mb-3">Choose Your Donation</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="upi://pay?pa=111229248397338@cnrb&pn=UjjawalSanskar&am=100&cu=INR"
+                       class="btn btn-outline-primary btn-lg">₹100</a>
+
+                    <a href="upi://pay?pa=111229248397338@cnrb&pn=UjjawalSanskar&am=500&cu=INR"
+                       class="btn btn-outline-success btn-lg">₹500</a>
+
+                    <a href="upi://pay?pa=111229248397338@cnrb&pn=UjjawalSanskar&am=1000&cu=INR"
+                       class="btn btn-outline-warning btn-lg">₹1000</a>
+
+                    <a href="upi://pay?pa=111229248397338@cnrb&pn=UjjawalSanskar&cu=INR"
+                       class="btn btn-primary btn-lg">Custom Amount</a>
+                </div>
+            </div>
+
+            <!-- Right Side: QR Code -->
+            <div class="col-md-6 text-center mt-4 mt-md-0">
+                <div class="p-3 bg-light rounded-3 shadow-sm d-inline-block">
+                    <img src="~/Content/assets/images/upi_qr_code.png"
+                         alt="Scan this QR code to donate online"
+                         class="img-fluid rounded qr-fix"
+                         style="max-width: 220px;">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- External CSS -->
+<style>
+    .qr-fix {
+        transform: rotate(0deg);
+        display: block;
+        margin: 0 auto;
+        transition: transform 0.3s ease;
+    }
+
+        .qr-fix:hover {
+            transform: scale(1.05);
+        }
+</style>
+
 <!-- ./ blog-section -->
 <section class="contact-section pt-120 pb-120" style="background-color: #f2f4f7; ">
     <div class="container">
