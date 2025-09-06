@@ -849,9 +849,11 @@
     <Content Include="Content\assets\font\fa-v4compatibility.html" />
     <Content Include="Content\assets\images\404-icon.jpg" />
     <Content Include="Content\assets\images\Blank_Icon.png" />
+    <Content Include="Content\assets\images\Donation.png" />
     <Content Include="Content\assets\images\Female_Icon.png" />
     <Content Include="Content\assets\images\loader.html" />
     <Content Include="Content\assets\images\Male_Icon.png" />
+    <Content Include="Content\assets\images\upi_qr_code.png" />
     <Content Include="Content\assets\img\Banner\About-2.jpg" />
     <Content Include="Content\assets\img\Banner\about-A.png" />
     <Content Include="Content\assets\img\Banner\AboutUs_Banner.png" />

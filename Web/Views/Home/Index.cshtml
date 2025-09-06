@@ -448,52 +448,147 @@
         </div>
     </div>
 </section>
-<!-- Donation Section -->
-<section id="donate" class="py-5 bg-light">
+<!-- Donation Form Section -->
+<section class="contact-section py-5" style="background: #f8fafc;">
     <div class="container">
-        <div class="row align-items-center shadow-lg p-4 rounded-4 bg-white">
+        <div class="row gy-lg-0 gy-5 align-items-center">
 
-            <!-- Left Side: Text -->
-            <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
-                <h2 class="fw-bold text-primary mb-3">Support Students – Donate</h2>
-                <p class="mb-3">
-                    If you'd like to donate items for students, please send them to:<br>
-                    <strong>Kayampur, Samnapar, Khusrupur</strong>
-                </p>
+            <!-- Left Side: Text & Quick Donate -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="fw-bold text-success mb-3">🌱 Support Students – Donate</h2>
                 <p class="mb-4">
-                    You can also support us with an online payment by scanning the QR code or choosing an amount below.
+                    Your contribution helps underprivileged students get access to
+                    <strong>quality education, books, and resources</strong>.
+                    Even a small donation can create a big impact in shaping their future.
                 </p>
-
-                <div class="mb-4">
-                    <h5 class="fw-bold">📞 Contact Info</h5>
-                    <p class="mb-1"><i class="bi bi-telephone-fill text-primary"></i> +91 8709989856</p>
-                    <p class="mb-1"><i class="bi bi-envelope-fill text-primary"></i> info@ujjawalsansakar.in</p>
+                <!-- Donation Note -->
+                <div class="mt-3  mb-3 p-3 border rounded bg-light">
+                    <p class="mb-0">
+                        Your contributions support <strong>Ujjawal Sanskar</strong> in providing education and opportunities to students in need.
+                    </p>
                 </div>
+                <a href="/donate" class="btn btn-success px-4 py-2 rounded-pill shadow-sm">
+                    💝 Donate Now
+                </a>
+            </div>
 
-                <!-- Donation Buttons -->
-                <h5 class="fw-bold mb-3">Choose Your Donation</h5>
-                <div class="d-flex flex-wrap gap-2">
-                    <a href="upi://pay?pa=111229248397338@cnrb&pn=UjjawalSanskar&am=100&cu=INR"
-                       class="btn btn-outline-primary btn-lg">₹100</a>
+            <!-- Right Side: Image -->
+            <div class="col-lg-6 text-center">
+                <img src="~/Content/assets/images/Donation.png"
+                     alt="Support Students Education"
+                     class="img-fluid rounded-3 ">
+            </div>
 
-                    <a href="upi://pay?pa=111229248397338@cnrb&pn=UjjawalSanskar&am=500&cu=INR"
-                       class="btn btn-outline-success btn-lg">₹500</a>
+        </div>
+    </div>
+</section>
 
-                    <a href="upi://pay?pa=111229248397338@cnrb&pn=UjjawalSanskar&am=1000&cu=INR"
-                       class="btn btn-outline-warning btn-lg">₹1000</a>
 
-                    <a href="upi://pay?pa=111229248397338@cnrb&pn=UjjawalSanskar&cu=INR"
-                       class="btn btn-primary btn-lg">Custom Amount</a>
+<!-- Donation Section -->
+<section id="donate" class="py-5" style="background: #f9fafc;">
+    <div class="container">
+        <div class="row shadow-lg rounded-4 bg-white p-4 p-md-5 align-items-center">
+
+            <!-- Left Side: Donation Form -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                    <h2 class="fw-bold text-center mb-2" style="color:#198754;">💚 Make a Donation</h2>
+                    <p class="text-center text-muted mb-4">
+                        Your support helps us continue our mission.
+                        Please fill out the form below.
+                    </p>
+
+                    <form action="/Donation/SaveDonation" method="post" id="donation_form" enctype="multipart/form-data">
+
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fa-regular fa-user"></i></span>
+                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Full Name" required>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fa-solid fa-phone"></i></span>
+                                <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Phone Number" required>
+                            </div>
+                        </div>
+
+                        <!-- Donation Amount -->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+                                <input type="number" id="donationAmount" name="amount" class="form-control" placeholder="Donation Amount (₹)" required>
+                            </div>
+                        </div>
+
+                        <!-- Transaction ID -->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fa-solid fa-hashtag"></i></span>
+                                <input type="text" id="transactionId" name="transactionId" class="form-control" placeholder="Transaction ID / UTR Number" required>
+                            </div>
+                        </div>
+
+                        <!-- Transaction Date -->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fa-regular fa-calendar"></i></span>
+                                <input type="date" id="transactionDate" name="transactionDate" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <!-- Upload Screenshot -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Upload Screenshot (optional)</label>
+                            <input type="file" id="screenshot" name="screenshot" class="form-control" accept="image/*">
+                        </div>
+                        <!-- Message -->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fa-regular fa-comment-dots"></i></span>
+                                <textarea id="message" name="message" class="form-control" rows="3" placeholder="Leave a message (optional)"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="d-grid">
+                            <button id="submit" class="btn custom-btn btn-lg rounded-pill shadow-sm" type="submit">
+                                <i class="fa-solid fa-heart me-2"></i> Donate Now
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <!-- Right Side: QR Code -->
-            <div class="col-md-6 text-center mt-4 mt-md-0">
-                <div class="p-3 bg-light rounded-3 shadow-sm d-inline-block">
-                    <img src="~/Content/assets/images/upi_qr_code.png"
-                         alt="Scan this QR code to donate online"
-                         class="img-fluid rounded qr-fix"
-                         style="max-width: 220px;">
+            <!-- Right Side: QR + Quick Donate -->
+            <div class="col-lg-6 text-center">
+                <div class="p-3 mb-4">
+                    <h4 class="fw-bold text-dark mb-3">Scan & Donate Instantly</h4>
+                    <div class="bg-light p-3 rounded-3 shadow-sm d-inline-block">
+                        <img src="~/Content/assets/images/upi_qr_code.png"
+                             alt="Scan this QR code to donate online"
+                             class="img-fluid rounded qr-fix"
+                             style="max-width: 220px;">
+                    </div>
+                </div>
+
+                <!-- Quick Donate Buttons -->
+                <h5 class="fw-bold mb-3">Quick Donate</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <button type="button" class="btn custom-btn quick-donate-btn" data-amount="100">₹100</button>
+                    <button type="button" class="btn custom-btn quick-donate-btn" data-amount="500">₹500</button>
+                    <button type="button" class="btn custom-btn quick-donate-btn" data-amount="1000">₹1000</button>
+                    <button type="button" class="btn custom-btn quick-donate-btn" data-amount="">Custom</button>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="mt-4">
+                    <h6 class="fw-bold">📞 Contact Info</h6>
+                    <p class="mb-1"><i class="bi bi-telephone-fill text-success"></i> +91 8709989856</p>
+                    <p class="mb-0"><i class="bi bi-envelope-fill text-success"></i> info@ujjawalsansakar.in</p>
                 </div>
             </div>
 
@@ -501,12 +596,21 @@
     </div>
 </section>
 
-<!-- External CSS -->
+<!-- Custom CSS -->
 <style>
+    .custom-btn {
+        background-color: #198754; /* Custom green */
+        color: #fff;
+        border: none;
+        transition: 0.3s ease;
+    }
+
+        .custom-btn:hover {
+            background-color: #146c43;
+            color: #fff;
+        }
+
     .qr-fix {
-        transform: rotate(0deg);
-        display: block;
-        margin: 0 auto;
         transition: transform 0.3s ease;
     }
 
@@ -515,58 +619,12 @@
         }
 </style>
 
-<!-- ./ blog-section -->
-<section class="contact-section pt-120 pb-120" style="background-color: #f2f4f7; ">
-    <div class="container">
-        <div class="row gy-lg-0 gy-5">
-            <div class="col-lg-5 col-md-12">
-                <img src="~/Content/assets/img/Banner/Contact_1.jpg" style="border-radius:15px; width:82%;" />
-            </div>
-            <div class="col-lg-7">
-                <div class="blog-contact-form contact-form">
-                    <h2 class="title mb-0">Leave A Reply</h2>
-                    <p class="mb-30 mt-10">Fill-up The Form and Message us of your amazing question</p>
-                    <div class="request-form">
-                        <form action="" method="post" id="ajax_contact" class="form-horizontal">
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="form-item">
-                                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Name">
-                                        <div class="icon"><i class="fa-regular fa-user"></i></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-item">
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="Your Email">
-                                        <div class="icon"><i class="fa-sharp fa-regular fa-envelope"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <div class="form-item">
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="Subject">
+<!-- Auto-fill donation amount from quick buttons -->
+<script>
+    document.querySelectorAll(".quick-donate-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            document.getElementById("donationAmount").value = this.dataset.amount;
+        });
+    });
+</script>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <div class="form-item message-item">
-                                        <textarea id="message" name="message" cols="30" rows="5" class="form-control address" placeholder="Message"></textarea>
-                                        <div class="icon"><i class="fa-light fa-messages"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="submit-btn">
-                                <button id="submit" class="ed-primary-btn" type="submit">Submit Message</button>
-                            </div>
-                        </form>
-                        <div id="form-messages" class="alert mt-20"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
