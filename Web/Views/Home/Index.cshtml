@@ -1,7 +1,9 @@
-﻿﻿
+﻿@model Web.Models.HomeModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var Type = TempData["AlertType"] ?? string.Empty;
+    var Message = TempData["AlertMessage"] ?? string.Empty;
 }
 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -85,7 +87,7 @@
                                 <p>
                                     उज्जवल संस्था का मुख्य उद्देश्य गरीब बच्चों के बीच मुफ्त शिक्षा देने का प्रयास करना है।
                                     Engineering, Medical, UPSC में चयन हो भारत के किसी भी कोने में कोई भी Merit वाला छात्र अगर अभावग्रस्त है तो उसकी पढ़ाई संस्था द्वारा कराई जाएगी। Engineering, Medical, UPSC की तैयारी की फीस व रहने खाने की सुविधा संस्था द्वारा दी जाएगी। इस पूरे प्रोग्राम
-                                    में प्रतियोगिता परीक्षा की तैयारी करने वाले छात्र छात्राओं को विशेष रूप से चयन किया जाएगा और उन्हें Scholarship दी जाएगी।
+                                    में प्रतियोगिता परीक्षा की तैयारी करने वाले छात्र छात्राओं को विशेष रूप से चयन किया जाएगा और उन्हें Scholarship दी जाएगी。
                                 </p>
                                 <ul class="about-list">
                                     <li><span>01</span>Admission – ₹100 /- → One Hundred</li>
@@ -497,14 +499,13 @@
                         Your support helps us continue our mission.
                         Please fill out the form below.
                     </p>
-
-                    <form action="/Donation/SaveDonation" method="post" id="donation_form" enctype="multipart/form-data">
-
+                    @using (Html.BeginForm("SaveUserDonation", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
                         <!-- Name -->
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text bg-light"><i class="fa-regular fa-user"></i></span>
-                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Full Name" required>
+                                @Html.TextBoxFor(m => m.User_Donation_Obj.Full_Name, new { @class = "form-control", @required = "required", @placeholder = "Your Full Name" })
                             </div>
                         </div>
 
@@ -512,7 +513,7 @@
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text bg-light"><i class="fa-solid fa-phone"></i></span>
-                                <input type="text" id="phone" name="phone" class="form-control" placeholder="Your Phone Number" required>
+                                @Html.TextBoxFor(m => m.User_Donation_Obj.PhoneNo, new { @class = "form-control", @required = "required", @placeholder = "Your Phone Number" })
                             </div>
                         </div>
 
@@ -520,7 +521,15 @@
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text bg-light"><i class="fa-solid fa-indian-rupee-sign"></i></span>
-                                <input type="number" id="donationAmount" name="amount" class="form-control" placeholder="Donation Amount (₹)" required>
+                                @Html.TextBoxFor(m => m.User_Donation_Obj.DonationAmount, new
+                                {
+                                    @class = "form-control",
+                                    type = "number",
+                                    @required = "required"
+                               ,
+                                    @placeholder = "Donation Amount (₹)",
+                                    @id = "SaveUserDonation"
+                           })
                             </div>
                         </div>
 
@@ -528,7 +537,7 @@
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text bg-light"><i class="fa-solid fa-hashtag"></i></span>
-                                <input type="text" id="transactionId" name="transactionId" class="form-control" placeholder="Transaction ID / UTR Number" required>
+                                @Html.TextBoxFor(m => m.User_Donation_Obj.UTR_No, new { @class = "form-control", @required = "required", @placeholder = "Transaction ID / UTR Number" })
                             </div>
                         </div>
 
@@ -536,20 +545,20 @@
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text bg-light"><i class="fa-regular fa-calendar"></i></span>
-                                <input type="date" id="transactionDate" name="transactionDate" class="form-control" required>
+                                @Html.TextBoxFor(m => m.User_Donation_Obj.DonationDate, new { @class = "form-control", type = "date", @required = "required" })
                             </div>
                         </div>
 
                         <!-- Upload Screenshot -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Upload Screenshot (optional)</label>
-                            <input type="file" id="screenshot" name="screenshot" class="form-control" accept="image/*">
+                            @Html.TextBoxFor(m => m.PaymentSS, new { @class = "form-control", type = "file", @accept = "image/*" })
                         </div>
                         <!-- Message -->
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text bg-light"><i class="fa-regular fa-comment-dots"></i></span>
-                                <textarea id="message" name="message" class="form-control" rows="3" placeholder="Leave a message (optional)"></textarea>
+                                @Html.TextAreaFor(m => m.User_Donation_Obj.Note, new { @class = "form-control", @placeholder = "Leave a message (optional)" })
                             </div>
                         </div>
 
@@ -559,7 +568,7 @@
                                 <i class="fa-solid fa-heart me-2"></i> Donate Now
                             </button>
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
 
@@ -626,5 +635,13 @@
             document.getElementById("donationAmount").value = this.dataset.amount;
         });
     });
+
+    var Message = '@Message';
+    if (Message != '') {
+        iziToast.success({
+            title: '@Type',
+            message: '@Message',
+        });
+    }
 </script>
 

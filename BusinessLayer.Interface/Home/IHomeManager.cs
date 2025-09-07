@@ -34,5 +34,10 @@ namespace BusinessLayer.Interface
 
         DataTable GetDashBoard(int User_Id);
         DataSet ListCustomSQLCMD(string SQL, SqlParameter[] sqlParameters);
+
+        #region User Donation
+        int SaveUserDonation(User_Donation Object);
+        IList<User_Donation> GetUserDonation(int? User_Donation_Id);
+        #endregion
     }
 }

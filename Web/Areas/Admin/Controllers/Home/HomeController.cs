@@ -280,5 +280,15 @@ namespace Web.Areas.Admin.Controllers.Home
             return RedirectToAction("UserProfile");
         }
         #endregion
+
+        #region User Donation
+        public ActionResult UserDonation()
+        {
+            HomeModel homeModel = new HomeModel();
+            HomeManager homeManager=new HomeManager();
+            homeModel.List_User_Donation_Obj = homeManager.GetUserDonation(null);
+            return View(homeModel);
+        }
+        #endregion
     }
 }

@@ -369,7 +369,7 @@ namespace Web.Areas.Admin.Controllers.Member
                 }
                 else if (dr.Length == 1)
                 {
-                    if (dt.Rows[0]["Position"].ToString() == "Left")
+                    if (dt.Rows[0]["Position"].Equals("Left"))
                     {
                         #region Level 2
                         dr = dt.Select("Parent_ID= '" + Token_Id + "'");

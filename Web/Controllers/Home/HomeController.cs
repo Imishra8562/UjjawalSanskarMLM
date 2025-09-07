@@ -44,7 +44,9 @@ namespace Web.Controllers
         #endregion
         public ActionResult Index()
         {
-            return View();
+            var model = new HomeModel();  // or whatever your view model is
+            model.User_Donation_Obj = new User_Donation(); // initialize the object
+            return View(model);
         }
         public ActionResult Header()
         {
@@ -294,6 +296,44 @@ namespace Web.Controllers
                 return Json("false");
             }                
         }
+        #endregion
+
+        #region UserDonation
+        public ActionResult SaveUserDonation(HomeModel Model)
+        {
+            int No = 0;
+            if (Model.PaymentSS != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Donation/PaymentSS/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.User_Donation_Obj.PhoneNo + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.PaymentSS.FileName);
+                Model.PaymentSS.SaveAs(Server.MapPath("~/Upload/Donation/PaymentSS/" + Model.User_Donation_Obj.PhoneNo + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Donation/PaymentSS/" + Model.User_Donation_Obj.PhoneNo + "_" + No + extension;
+                Model.User_Donation_Obj.PaymentSS = FilePathForPhoto;
+            }
+            
+            IHomeManager homeManager = new HomeManager();
+            Model.User_Donation_Obj.Created_IP = SystemIP();
+            Model.User_Donation_Obj.Created_By = 1;
+            int Id = homeManager.SaveUserDonation(Model.User_Donation_Obj);
+            if (Id != 0 && Id > 0)
+            {               
+                TempData["AlertType"] = "SUCCESS";
+                TempData["AlertMessage"] = "Form Saved Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "ERROR";
+                TempData["AlertMessage"] = "Sorry, Failed to save form !";
+                string url = this.Request.UrlReferrer.AbsoluteUri;  
+            }
+            return RedirectToAction("Index");
+        }
+
         #endregion
     }
 }

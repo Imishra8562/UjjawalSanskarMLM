@@ -51,6 +51,7 @@
     <Compile Include="Home\Registration.cs" />
     <Compile Include="Home\Registration_Business.cs" />
     <Compile Include="Home\User_DashBoard.cs" />
+    <Compile Include="Home\User_Donation.cs" />
     <Compile Include="Master\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\User.cs" />

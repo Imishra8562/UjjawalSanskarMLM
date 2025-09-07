@@ -17,5 +17,9 @@ namespace Web.Models
         public HttpPostedFileBase ImageFile { get; set; }
         public HttpPostedFileBase payment_SS { get; set; }
         #endregion       
+
+        public List<User_Donation> List_User_Donation_Obj { get; set; }
+        public User_Donation User_Donation_Obj { get; set; }
+        public HttpPostedFileBase PaymentSS { get; set; }
     }
 }

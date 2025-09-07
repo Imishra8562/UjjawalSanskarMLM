@@ -70,6 +70,7 @@
     <Folder Include="dbo\Stored Procedures\Home" />
     <Folder Include="dbo\Tables\Home" />
     <Folder Include="dbo\Stored Procedures\Home\Registration" />
+    <Folder Include="dbo\Stored Procedures\Home\UserDonation" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Stored Procedures\Master\Status\sp_Add_Status.sql" />
@@ -102,8 +103,14 @@
     <Build Include="dbo\Stored Procedures\Home\sp_List_Team_Level.sql" />
     <Build Include="dbo\Functions\fn_IsBinaryTreeComplete10.sql" />
     <Build Include="dbo\Stored Procedures\Home\Registration\sp_List_My_Team_Level.sql" />
+    <Build Include="dbo\Tables\Home\tbl_User_Donation.sql" />
+    <Build Include="dbo\Stored Procedures\Home\UserDonation\sp_Add_User_Donation.sql" />
+    <Build Include="dbo\Stored Procedures\Home\UserDonation\sp_List_User_Donation.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DataBase.refactorlog" />
   </ItemGroup>
 </Project>

@@ -26,5 +26,7 @@ namespace Web.Areas.Admin
         #endregion
         public HttpPostedFileBase ImageFile { get; set; }
         public HttpPostedFileBase QRCode { get; set; }
+
+        public IList<User_Donation> List_User_Donation_Obj { get; set; }
     }
 }

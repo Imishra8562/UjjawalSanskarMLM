@@ -1631,6 +1631,7 @@
     <Folder Include="Content\assets\img\team\shapes\" />
     <Folder Include="Content\assets\img\team\shop\" />
     <Folder Include="Content\assets\img\team\sponsor\" />
+    <Folder Include="Upload\Donation\PaymentSS\" />
     <Folder Include="Upload\Member\QrCode\" />
     <Folder Include="Upload\Payment\Payment_Snap\" />
     <Folder Include="Views\Admin\" />
@@ -1668,6 +1669,7 @@
     <Content Include="Areas\Admin\Views\Member\UserProfile.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Certificate.cshtml" />
     <Content Include="Areas\Admin\Views\Member\UserGoleComList.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\UserDonation.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />

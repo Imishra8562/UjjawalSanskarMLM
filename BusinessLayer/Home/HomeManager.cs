@@ -204,5 +204,42 @@ namespace BusinessLayer
             return data;
         }
 
+        #region User Donation
+        public int SaveUserDonation(User_Donation Object)
+        {
+            int Id = 0;
+
+            try
+            {
+                BaseRepository<User_Donation> db = new BaseRepository<User_Donation>();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Id;
+        }
+        public IList<User_Donation> GetUserDonation(int? User_Donation_Id)
+        {
+            IList<User_Donation> ListObj = new List<User_Donation>();
+            try
+            {
+                BaseRepository<User_Donation> db = new BaseRepository<User_Donation>();
+                DataSet ds = db.List(User_Donation_Id);
+                if (ds != null && ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows != null)
+                {
+                    ListObj = DataBaseUtil.DataTableToList<User_Donation>(ds.Tables[0]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        #endregion
+
     }
 }
