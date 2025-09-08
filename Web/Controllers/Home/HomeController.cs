@@ -4,6 +4,7 @@ using Common;
 using Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -302,26 +303,42 @@ namespace Web.Controllers
         public ActionResult SaveUserDonation(HomeModel Model)
         {
             int No = 0;
+
             if (Model.PaymentSS != null)
             {
-                string fullPath = Request.MapPath("/Upload/Donation/PaymentSS/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.User_Donation_Obj.PhoneNo + "*"));
-                foreach (string f in files)
+                //  Correct folder path (adjust if Upload is outside /Web folder)
+                string folderPath = Server.MapPath("~/Upload/Donation/PaymentSS/");
+
+                //  Ensure folder exists
+                if (!Directory.Exists(folderPath))
                 {
-                    No += 1;
+                    Directory.CreateDirectory(folderPath);
                 }
-                string extension = System.IO.Path.GetExtension(Model.PaymentSS.FileName);
-                Model.PaymentSS.SaveAs(Server.MapPath("~/Upload/Donation/PaymentSS/" + Model.User_Donation_Obj.PhoneNo + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Donation/PaymentSS/" + Model.User_Donation_Obj.PhoneNo + "_" + No + extension;
+
+                //  Count existing files
+                string[] files = Directory.GetFiles(folderPath, Model.User_Donation_Obj.PhoneNo + "*");
+                No = files.Length;
+
+                //  Build file name
+                string extension = Path.GetExtension(Model.PaymentSS.FileName);
+                string fileName = Model.User_Donation_Obj.PhoneNo + "_" + No + extension;
+
+                //  Save file
+                string savePath = Path.Combine(folderPath, fileName);
+                Model.PaymentSS.SaveAs(savePath);
+
+                //  Store relative path for DB
+                string FilePathForPhoto = "~/Upload/Donation/PaymentSS/" + fileName;
                 Model.User_Donation_Obj.PaymentSS = FilePathForPhoto;
             }
-            
+
             IHomeManager homeManager = new HomeManager();
             Model.User_Donation_Obj.Created_IP = SystemIP();
             Model.User_Donation_Obj.Created_By = 1;
             int Id = homeManager.SaveUserDonation(Model.User_Donation_Obj);
-            if (Id != 0 && Id > 0)
-            {               
+
+            if (Id > 0)
+            {
                 TempData["AlertType"] = "SUCCESS";
                 TempData["AlertMessage"] = "Form Saved Successfully !";
             }
@@ -329,8 +346,8 @@ namespace Web.Controllers
             {
                 TempData["AlertType"] = "ERROR";
                 TempData["AlertMessage"] = "Sorry, Failed to save form !";
-                string url = this.Request.UrlReferrer.AbsoluteUri;  
             }
+
             return RedirectToAction("Index");
         }
 

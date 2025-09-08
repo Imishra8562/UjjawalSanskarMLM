@@ -1,4 +1,4 @@
-﻿@model Web.Models.HomeModel
+﻿﻿@model Web.Models.HomeModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -50,171 +50,231 @@
 
 <!--End-->
 
-<section class="about-section-10 pt-80 pb-50">
-    <div class="shape-1">
-        <img src="~/Content/assets/img/new-update-2/shapes/about-shape-1.png" alt="shape">
+<section class="about-section py-5 position-relative">
+    <!-- Decorative Shape -->
+    <div class="shape-1 position-absolute top-0 start-0">
+        <img src="~/Content/assets/img/new-update-2/shapes/about-shape-1.png" alt="shape" class="img-fluid">
     </div>
+
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
+
+            <!-- Image Side -->
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                <div class="about-img-wrap text-center">
+                    <img src="~/Content/assets/img/Banner/about-A.png"
+                         alt="About Us"
+                         class="img-fluid rounded shadow-lg"
+                         style="max-height: 420px; object-fit: contain;">
+                </div>
+            </div>
+
+            <!-- Content Side -->
             <div class="col-lg-6 col-md-12">
-                <div class="section-heading mb-30">
-                    <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>About Company</h4>
-                </div>
-                <div class="about-img-wrap-10">
-                    <div class="about-img-1">
-                        <img src="~/Content/assets/img/Banner/about-A.png" />
-                    </div>
-                    @*<div class="about-img-2"><img src="~/Content/assets//img/new-update-2/about-img-2.png" alt="about"></div>*@
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 mt-5">
-                <div class="about-content-8 about-content-10">
-                    <div class="section-heading mb-30">
-                        <h3 class="wow fade-in-bottom" data-wow-delay="400ms">Simple and standard — great for accessibility and clarity. </h3>
-                    </div>
-                    <div class="about-tab">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="about-content-tab-1" data-bs-toggle="tab" data-bs-target="#about-tab-1" type="button" role="tab" aria-controls="home" aria-selected="true">Our Mission</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="about-content-tab-2" data-bs-toggle="tab" data-bs-target="#about-tab-2" type="button" role="tab" aria-controls="profile" aria-selected="false" tabindex="-1">Our Vision</button>
-                            </li>
-
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="about-tab-1" role="tabpanel" aria-labelledby="about-content-tab-1">
-                                <p>
-                                    उज्जवल संस्था का मुख्य उद्देश्य गरीब बच्चों के बीच मुफ्त शिक्षा देने का प्रयास करना है।
-                                    Engineering, Medical, UPSC में चयन हो भारत के किसी भी कोने में कोई भी Merit वाला छात्र अगर अभावग्रस्त है तो उसकी पढ़ाई संस्था द्वारा कराई जाएगी। Engineering, Medical, UPSC की तैयारी की फीस व रहने खाने की सुविधा संस्था द्वारा दी जाएगी। इस पूरे प्रोग्राम
-                                    में प्रतियोगिता परीक्षा की तैयारी करने वाले छात्र छात्राओं को विशेष रूप से चयन किया जाएगा और उन्हें Scholarship दी जाएगी。
-                                </p>
-                                <ul class="about-list">
-                                    <li><span>01</span>Admission – ₹100 /- → One Hundred</li>
-                                    <li><span>02</span>Adv. – ₹10,000 /- → Ten Thousand</li>
-                                    <li>
-                                        <span>03</span>₹10,000 /- Will refunded ₹500/- per month
-                                        after the admission of two students.
-                                    </li>
-
-                                </ul>
-                                <div class="about-btn mt-30">
-                                    <a href="javascript:void();" class="ed-primary-btn">Get a Free Lesson</a>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="about-tab-2" role="tabpanel" aria-labelledby="about-content-tab-2">
-                                <p>
-                                    To create a future where no talented student is held back by financial hardship — empowering
-                                    underprivileged youth across India to achieve success in Engineering, Medical, and UPSC through free,
-                                    quality education, mentorship, and support. We envision a society where merit meets opportunity,
-                                    and every child has the chance to rise, regardless of their background.
-                                </p>
-                                <ul class="about-list">
-                                    <li>
-                                        <span>01</span>To ensure that every meritorious but underprivileged student in India gets free access to quality education and resources for competitive exams like Engineering,
-                                        Medical, and UPSC.
-                                    </li>
-                                </ul>
-                                <div class="about-btn mt-30">
-                                    <a href="@Url.Action("About","Home")" class="ed-primary-btn">Get more about me</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ./ about-section -->
-
-<section class="promo-section-3 pt-50 pb-30">
-    <div class="container pb-20">
-        <div class="row gy-lg-0 gy-4 justify-content-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="promo-item-3 wow fade-in-bottom" data-wow-delay="400ms">
-                    <div class="icon"><img src="~/Content/assets/img/icon/promo-1.png" alt="promo"></div>
-                    <div class="content white-content">
-                        <h3 class="title">Opportunity</h3>
-                        <p>Free & Premium Courses. Trusted by 17 Million Learners Worldwide."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="promo-item-3 wow fade-in-bottom" data-wow-delay="500ms">
-                    <div class="icon"><img src="~/Content/assets/img/icon/promo-2.png" alt="promo"></div>
-                    <div class="content white-content">
-                        <h3 class="title">
-                            Your Future Starts Herek
-                        </h3>
-                        <p>Begin your journey—gain knowledge, build confidence, shape your future</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="promo-item-3 wow fade-in-bottom" data-wow-delay="600ms">
-                    <div class="icon"><img src="~/Content/assets/img/icon/promo-3.png" alt="promo"></div>
-                    <div class="content white-content">
-                        <h3 class="title">Degrees</h3>
-                        <p>
-                            Top college degrees designed for real-world skills and success.
+                <div class="about-content">
+                    <!-- Section Heading -->
+                    <div class="section-heading mb-4">
+                        <h4 class="sub-heading fw-bold mb-2" style="color:#07a698;">
+                            <i class="fa-sharp fa-solid fa-bolt me-2" style="color:#07a698;"></i>About Us
+                        </h4>
+                        <h2 class="fw-bold">Empowering Students with Education</h2>
+                        <p class="text-muted">
+                            This noble mission is the cherished idea and lifelong dream of
+                            <strong>Late Shiv Kumar</strong>. We are committed to ensuring that
+                            no talented student is held back by financial hardship.
                         </p>
                     </div>
+
+                    <!-- Tabs -->
+                    <div class="about-tab">
+                        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active fw-semibold"
+                                        id="mission-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#mission"
+                                        type="button" role="tab"
+                                        aria-controls="mission" aria-selected="true"
+                                        style="color:#07a698;">
+                                    Our Mission
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-semibold"
+                                        id="vision-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#vision"
+                                        type="button" role="tab"
+                                        aria-controls="vision" aria-selected="false"
+                                        style="color:#07a698;">
+                                    Our Vision
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Tab Content -->
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Mission -->
+                            <div class="tab-pane fade show active" id="mission" role="tabpanel" aria-labelledby="mission-tab">
+                                <p>
+                                    उज्जवल संस्था का मुख्य उद्देश्य गरीब बच्चों को मुफ्त शिक्षा उपलब्ध कराना है।
+                                    चाहे वह <strong>Engineering, Medical, या UPSC</strong> की तैयारी कर रहे हों —
+                                    संस्था उनकी पढ़ाई, रहने और खाने की सुविधा उपलब्ध कराती है।
+                                    योग्य और मेहनती छात्रों को चयनित कर <strong>Scholarship</strong> भी प्रदान की जाती है।
+                                </p>
+                                <ul class="about-list list-unstyled">
+                                    <li><span class="fw-bold" style="color:#07a698;">01.</span> Admission – ₹100 /- (One Hundred)</li>
+                                    <li><span class="fw-bold" style="color:#07a698;">02.</span> Advance – ₹10,000 /- (Ten Thousand)</li>
+                                    <li><span class="fw-bold" style="color:#07a698;">03.</span> Refund of ₹500/- per month after admission of two students.</li>
+                                </ul>
+                                <a href="javascript:void(0);" class="btn mt-3" style="background:#07a698; color:#fff;">Get a Free Lesson</a>
+                            </div>
+
+                            <!-- Vision -->
+                            <div class="tab-pane fade" id="vision" role="tabpanel" aria-labelledby="vision-tab">
+                                <p>
+                                    To create a future where <strong>merit meets opportunity</strong> —
+                                    empowering underprivileged youth across India to achieve success
+                                    in Engineering, Medical, and UPSC through free, quality education,
+                                    mentorship, and support.
+                                </p>
+                                <ul class="about-list list-unstyled">
+                                    <li>
+                                        <span class="fw-bold" style="color:#07a698;">01.</span> Ensuring every meritorious but underprivileged student in India gets
+                                        free access to resources for competitive exams.
+                                    </li>
+                                </ul>
+                                <a href="@Url.Action("About","Home")" class="btn mt-3" style="border:2px solid #07a698; color:#07a698;">Get More About Us</a>
+                            </div>
+                        </div>
+                    </div> <!-- End Tabs -->
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- ./ promo-section -->
 
+
+
+<!-- ./ about-section -->
+<!-- ./ promo-section -->
 <section class="content-section-2 pt-80 pb-80">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
+            <!-- Left Image -->
             <div class="col-lg-6">
                 <div class="content-img-wrap-2 wow fade-in-left" data-wow-delay="400ms">
-                    <div class="content-img">
-                        <img src="~/Content/assets/img/Banner/Image_About.jpg" alt="content" />
-                        @*<img src="~/Content/assets/img/images/content-img-4.png" >*@
+                    <div class="content-img rounded shadow-lg overflow-hidden">
+                        <img src="~/Content/assets/img/Banner/Image_About.jpg" alt="Chairman - Sudhir Kumar" class="img-fluid rounded" />
                     </div>
                 </div>
             </div>
+
+            <!-- Right Content -->
             <div class="col-lg-6">
                 <div class="content-info-2">
                     <div class="section-heading mb-20">
-                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>TEAM MESSAGE</h4>
-                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Dear Student</h2>
+                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms">
+                            <span class="heading-icon"><i class="fa-solid fa-user-tie"></i></span>
+                            Chairman’s Message
+                        </h4>
+                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">
+                            Dear Students
+                        </h2>
                     </div>
+
                     <p class="wow fade-in-bottom" data-wow-delay="500ms">
-                        You are very much familiar with the word "TEAM". As you all know
-                        A game couldn’t be won by a single person
-                        A war couldn’t be fought by a single person
-                        You all know these things can be conquered by the "TEAM"!
-                        In a very similar manner, UJJAWAL SANSKAR is progressing and working with the "TEAM".
-                        UJJAWAL SANSKAR is very responsible about the team and students.
+                        You are very much familiar with the word <strong>"TEAM"</strong>.
+                        As you all know — a game can’t be won by a single person,
+                        a war can’t be fought by a single person.
+                        Great achievements are always conquered by the <strong>"TEAM"</strong>!
                     </p>
+                    <p class="wow fade-in-bottom" data-wow-delay="550ms">
+                        In the same way, <strong>Ujjawal Sanskar</strong> is growing with the spirit of teamwork,
+                        responsibility, and dedication toward students.
+                        Our value system revolves around <strong>TRUTH, TRANSPARENCY & COMMITMENT</strong>.
+                    </p>
+
                     <ul class="content-list wow fade-in-bottom" data-wow-delay="600ms">
-                        <li>
-                            <i class="fa fa-solid fa-check"></i>Whatever we think, We say
-                            & Whatever we say, we do</
-
-                        </li>
+                        <li><i class="fa fa-check-circle text-primary"></i> Whatever we think, we say & whatever we say, we do</li>
+                        <li><i class="fa fa-check-circle text-primary"></i> Education with integrity, discipline & values</li>
                     </ul>
-                    <div>
-                        <h5>
-                            UJJAWAL SANSKAR
-                        </h5>
-                        <h6>
-                            Value system revolves around <br />
-                            TRUTH, TRANSPARENCY & COMMITMENT
-                        </h6>
-                    </div>
 
+                    <div class="mt-4">
+                        <h5 class="fw-bold mb-1">Sudhir Kumar</h5>
+                        <h6 class="text-muted">Chairman, Ujjawal Sanskar</h6>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <!-- ./ content-section -->
+<section class="team-section pt-80 pb-80 bg-light">
+    <div class="container">
+        <!-- Heading -->
+        <div class="section-heading text-center mb-50">
+            <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms">
+                <span class="heading-icon"><i class="fa-solid fa-users"></i></span>
+                Our Core Team
+            </h4>
+            <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">
+                Meet the Leaders Behind <span class="text-green">Ujjawal Sanskar</span>
+            </h2>
+        </div>
+
+        <!-- Team Members -->
+        <div class="row justify-content-center">
+            <!-- Member 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="team-card text-center p-4 rounded shadow-sm bg-white wow fade-in-bottom" data-wow-delay="500ms">
+                    <div class="team-img mb-3">
+                        <a href="@Url.Action("About","Home")">
+                            <img src="~/Content/assets/img/Banner/Image_About.jpg" alt="Sudhir Kumar"
+                                 class="img-fluid rounded-circle border border-3 ed-color-theme-primary"
+                                 style="width:180px; height:180px; object-fit:cover;" />
+                        </a>
+                    </div>
+                    <h5 class="fw-bold"><a href="@Url.Action("About","Home")" class="text-dark text-decoration-none">Sudhir Kumar</a></h5>
+                    <p class="text-muted">Chairman</p>
+                </div>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="team-card text-center p-4 rounded shadow-sm bg-white wow fade-in-bottom" data-wow-delay="600ms">
+                    <div class="team-img mb-3">
+                        <a href="@Url.Action("About","Home")">
+                            <img src="~/Content/assets/img/Banner/President.png" alt="Ajay Raj"
+                                 class="img-fluid rounded-circle border border-3 ed-color-theme-primary"
+                                 style="width:180px; height:180px; object-fit:cover;" />
+                        </a>
+                    </div>
+                    <h5 class="fw-bold"><a href="@Url.Action("About","Home")" class="text-dark text-decoration-none">Ajay Raj</a></h5>
+                    <p class="text-muted">President</p>
+                </div>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="team-card text-center p-4 rounded shadow-sm bg-white wow fade-in-bottom" data-wow-delay="700ms">
+                    <div class="team-img mb-3">
+                        <a href="@Url.Action("About","Home")">
+                            <img src="~/Content/assets/img/Banner/team_Picture.png" alt="Rina Devi"
+                                 class="img-fluid rounded-circle border border-3 ed-color-theme-primary"
+                                 style="width:180px; height:180px; object-fit:cover;" />
+                        </a>
+                    </div>
+                    <h5 class="fw-bold"><a href="@Url.Action("About","Home")" class="text-dark text-decoration-none">Rina Devi</a></h5>
+                    <p class="text-muted">Treasurer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 <section class="feature-section-5 pt-80 pb-50">
     <div class="container">
